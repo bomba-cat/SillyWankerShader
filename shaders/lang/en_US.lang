@@ -1,0 +1,30 @@
+option.red_coefficient=Red Multiplier
+option.red_coefficient.comment=1-No Filter, 0=Full Filter
+option.green_coefficient=Green Multiplier
+option.green_coefficient.comment=1-No Filter, 0=Full Filter
+option.blue_coefficient=Blue Multiplier
+option.blue_coefficient.comment=1-No Filter, 0=Full Filter
+
+option.shadowMapResolution=Shadow Resolution
+option.shadowMapResolution.comment=Resolution of the Shadows
+option.SHADOW_SAMPLES=Shadow Samples
+option.SHADOW_SAMPLES.comment=*Warning* Causes a lot of lag and does increase blur!
+option.COLORED_SHADOWS=Colored Shadows
+
+option.sunPathRotation=Sun Path Rotation
+option.sunPathRotation.comment=Silly Comment >.<
+
+value.shadowMapResolution.256=Potato - 256
+value.shadowMapResolution.512=Very Low - 512
+value.shadowMapResolution.1024=Low - 1024
+value.shadowMapResolution.2048=Medium - 2048
+value.shadowMapResolution.4096=High - 4096
+value.shadowMapResolution.8192=Very High - 8192
+value.shadowMapResolution.16384=Ultra - 16384
+
+value.COLORED_SHADOWS.0=Off
+value.COLORED_SHADOWS.1=On
+
+screen.SHADOWS=Shadow Options
+screen.WORLD=World Options
+screen.COLOR_MANIPULATION=Color Manipulation
