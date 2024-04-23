@@ -24,14 +24,15 @@ uniform mat4 shadowProjection;
 
 /*
 const int colortex0Format = RGBA16F;
-const int colortex1Format = RGB16;
-const int colortex2Format = RGB16;
+const int colortex1Format = R11F_G11F_B10F;
+const int colortex2Format = R11F_G11F_B10F;
+const int colortex3Format = R11F_G11F_B10F;
 */
 
 #define COLORED_SHADOWS 1 // [0 1]
 const float sunPathRotation = -40.0; // [60.0 50.0 40.0 30.0 20.0 10.0 0.0 -10.0 -20.0 -30.0 -40.0 -50.0 -60.0]
 const int shadowMapResolution = 2048; // [256 512 1024 2048 4096 8192 16384]
-const int noiseTextureResolution = 64;
+const int noiseTextureResolution = 64; // [8 16 32 64 128 256 512]
 
 const float Ambient = 0.025f;
 
