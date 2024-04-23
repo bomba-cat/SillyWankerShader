@@ -11,6 +11,6 @@ uniform sampler2D colortex0;
 void main() {
     // Sample and apply gamma correction
    vec3 Color = pow(texture2D(colortex0, TexCoords).rgb, vec3(1.0f / 2.2f));
-   Color = vec3(Color[0]*red_coefficient, Color[1]*green_coefficient, Color[2]*blue_coefficient);
+   Color = Color * vec3(red_coefficient, green_coefficient, blue_coefficient);
    gl_FragColor = vec4(Color, 1.0f);
 }
