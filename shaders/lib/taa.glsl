@@ -24,12 +24,12 @@ vec3 fast_taa(vec3 current_color, vec2 texcoord_past) {
   if (clamp(texcoord_past, 0.0, 1.0) != texcoord_past) {
     return current_color;
   } else {
-    vec3 previous = texture2D(colortex3, texcoord_past).rgb;
+    vec3 previous = texture2D(colortex0, texcoord_past).rgb;
 
-    vec3 near_color0 = texture2D(colortex1, texcoord + vec2(-pixel_size_x, 0.0)).rgb;
-    vec3 near_color1 = texture2D(colortex1, texcoord + vec2(pixel_size_x, 0.0)).rgb;
-    vec3 near_color2 = texture2D(colortex1, texcoord + vec2(0.0, -pixel_size_y)).rgb;
-    vec3 near_color3 = texture2D(colortex1, texcoord + vec2(0.0, pixel_size_y)).rgb;
+    vec3 near_color0 = texture2D(colortex0, texcoord + vec2(-pixel_size_x, 0.0)).rgb;
+    vec3 near_color1 = texture2D(colortex0, texcoord + vec2(pixel_size_x, 0.0)).rgb;
+    vec3 near_color2 = texture2D(colortex0, texcoord + vec2(0.0, -pixel_size_y)).rgb;
+    vec3 near_color3 = texture2D(colortex0, texcoord + vec2(0.0, pixel_size_y)).rgb;
     
     vec3 nmin = min(current_color, min(near_color0, min(near_color1, min(near_color2, near_color3))));
     vec3 nmax = max(current_color, max(near_color0, max(near_color1, max(near_color2, near_color3))));

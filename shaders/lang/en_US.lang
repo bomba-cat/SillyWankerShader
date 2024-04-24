@@ -14,10 +14,12 @@ option.noiseTextureResolution=Shadow Noise Resolution
 option.noiseTextureResolution.comment=Resolution of the Shadows Noise
 
 option.sunPathRotation=Sun Path Rotation
-option.sunPathRotation.comment=Silly Comment >.<
+option.sunPathRotation.comment=Where the sun is
 
 option.SHARPNESS=Sharpness
 option.SHARPNESS.comment=Sharpens the pixels
+option.AA=Anti Aliasing
+option.AA.comment=Smooth out the edges
 
 value.shadowMapResolution.256=Potato - 256
 value.shadowMapResolution.512=Very Low - 512
@@ -32,6 +34,9 @@ value.COLORED_SHADOWS.1=On
 
 value.SHARPNESS.0=Off
 value.SHARPNESS.1=On
+
+value.AA.0=Off
+value.AA.1=On
 
 screen.SHADOWS=Shadow Options
 screen.WORLD=World Options
