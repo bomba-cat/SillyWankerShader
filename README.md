@@ -4,7 +4,7 @@ Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look o
 
 # Download
 - [CurseForge](https://www.curseforge.com/minecraft/shaders/sillywankershader)
-- [Modrinth (Still getting reviewed)](https://modrinth.com/shader/sillywankershader)
+- [Modrinth](https://modrinth.com/shader/sillywankershader)
 
 ## Features
 - Shadows
