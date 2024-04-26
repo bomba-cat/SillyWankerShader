@@ -96,9 +96,9 @@ vec3 GetShadow(float depth) {
     vec3 View = ViewW.xyz / ViewW.w;
     vec4 World = gbufferModelViewInverse * vec4(View, 1.0f);
     vec4 ShadowSpace = shadowProjection * shadowModelView * World;
-    ShadowSpace.xy = DistortPosition(ShadowSpace.xy);
+    ShadowSpace.xy = DistortPosition(ShadowSpace.xy - 0.0002f);
     vec3 SampleCoords = ShadowSpace.xyz * 0.5f + 0.5f;
-    float RandomAngle = texture2D(noisetex, TexCoords * 20.0f).r * 100.0f;
+    float RandomAngle = texture2D(noisetex, TexCoords * 10.0f).r * 100.0f;
     float cosTheta = cos(RandomAngle);
 	float sinTheta = sin(RandomAngle);
     mat2 Rotation =  mat2(cosTheta, -sinTheta, sinTheta, cosTheta) / shadowMapResolution; // We can move our division by the shadow map resolution here for a small speedup
@@ -106,7 +106,7 @@ vec3 GetShadow(float depth) {
     for(int x = -SHADOW_SAMPLES; x <= SHADOW_SAMPLES; x++){
         for(int y = -SHADOW_SAMPLES; y <= SHADOW_SAMPLES; y++){
             vec2 Offset = Rotation * vec2(x, y);
-            vec3 CurrentSampleCoordinate = vec3(SampleCoords.xy + Offset, SampleCoords.z);
+            vec3 CurrentSampleCoordinate = vec3(SampleCoords.xy + Offset, SampleCoords.z + 0.00065);
             ShadowAccum += TransparentShadow(CurrentSampleCoordinate);
         }
     }
@@ -116,7 +116,7 @@ vec3 GetShadow(float depth) {
 
 void main(){
     // Account for gamma correction
-    vec3 Albedo = pow(texture2D(colortex0, TexCoords).rgb, vec3(2.2f));
+    vec3 Albedo = pow(texture2D(colortex0, TexCoords).rgb, vec3(2.0f));
     float Depth = texture2D(depthtex0, TexCoords).r;
     if(Depth == 1.0f){
         gl_FragData[0] = vec4(Albedo, 1.0f);
@@ -128,10 +128,10 @@ void main(){
     vec2 Lightmap = texture2D(colortex2, TexCoords).rg;
     vec3 LightmapColor = GetLightmapColor(Lightmap);
     // Compute cos theta between the normal and sun directions
-    float NdotL = max(dot(Normal, normalize(sunPosition)), 0.0f);
+    float NdotL = max(dot(Normal, normalize(sunPosition)), 0.35f);
     // Do the lighting calculations
     vec3 Diffuse = Albedo * (LightmapColor + NdotL * GetShadow(Depth) + Ambient);
-    /* DRAWBUFFERS:0 */
+    /* DRAWBUFFERS:0123 */
     // Finally write the diffuse color
     gl_FragData[0] = vec4(Diffuse, 1.0f);
 }
