@@ -139,6 +139,5 @@ void main() {
         Color = fast_taa(Color, TexCoords);
     #endif
 
-
     gl_FragColor = vec4(Color, 1.0f);
 }

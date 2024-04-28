@@ -10,6 +10,7 @@ option.shadowMapResolution.comment=Resolution of the Shadows
 option.SHADOW_SAMPLES=Shadow Samples
 option.SHADOW_SAMPLES.comment=*Warning* Causes a lot of lag and does increase blur!
 option.COLORED_SHADOWS=Colored Shadows
+option.SHADOW_NOISING=Shadow Noise
 option.noiseTextureResolution=Shadow Noise Resolution
 option.noiseTextureResolution.comment=Resolution of the Shadows Noise
 
@@ -39,6 +40,8 @@ value.color_amount.4=32 Colors
 
 value.COLORED_SHADOWS.0=Off
 value.COLORED_SHADOWS.1=On
+value.SHADOW_NOISING.0=Off
+value.SHADOW_NOISING.1=On
 
 value.SHARPNESS.0=Off
 value.SHARPNESS.1=On
@@ -48,5 +51,6 @@ value.AA.1=On
 
 screen.SHADOWS=Shadow Options
 screen.WORLD=World Options
+screen.SILLY_FUNCTIONS=Silly Functions
 screen.COLOR_MANIPULATION=Color Manipulation
 screen.POST=Post Processing
