@@ -119,7 +119,7 @@ vec3 GetShadow(float depth) {
     return ShadowAccum;
 }
 
-#define DEFERREDVAL 0 // [0 1 2]
+#define DEFERREDVAL 0 // [0 1]
 
 void main(){
     // Account for gamma correction

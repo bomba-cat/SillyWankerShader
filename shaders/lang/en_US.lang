@@ -1,9 +1,16 @@
+option.DEFERREDVAL=Render type
+value.DEFERREDVAL.0=Composite
+value.DEFERREDVAL.1=Deferred
+value.DEFERREDVAL.2=Both
+
 option.red_coefficient=Red Multiplier
 option.red_coefficient.comment=1-No Filter, 0=Full Filter
 option.green_coefficient=Green Multiplier
 option.green_coefficient.comment=1-No Filter, 0=Full Filter
 option.blue_coefficient=Blue Multiplier
 option.blue_coefficient.comment=1-No Filter, 0=Full Filter
+option.GLINT_TYPE=Glint Effect
+option.GLINT_TYPE.comment=Select which noise effect you want on your glint
 
 option.shadowMapResolution=Shadow Resolution
 option.shadowMapResolution.comment=Resolution of the Shadows
@@ -43,6 +50,11 @@ value.COLORED_SHADOWS.1=On
 value.SHADOW_NOISING.0=Off
 value.SHADOW_NOISING.1=On
 
+value.GLINT_TYPE.0=No Glint
+value.GLINT_TYPE.1=Maze Glint
+value.GLINT_TYPE.2=Circles Glint
+value.GLINT_TYPE.3=Truchet Glint
+
 value.SHARPNESS.0=Off
 value.SHARPNESS.1=On
 
@@ -53,4 +65,5 @@ screen.SHADOWS=Shadow Options
 screen.WORLD=World Options
 screen.SILLY_FUNCTIONS=Silly Functions
 screen.COLOR_MANIPULATION=Color Manipulation
+screen.OTHERS=Other Options
 screen.POST=Post Processing
