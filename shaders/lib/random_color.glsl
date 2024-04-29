@@ -6,7 +6,7 @@ vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
 vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
 vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
 float snoise(vec3 v) { 
-    const vec2 C = vec2(1.0/6.0, 1.0/3.0) ;
+    const vec2 C = vec2(1.0/6.0, 1.0/3.0);
     const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
 
     // First corner
@@ -83,10 +83,10 @@ float smoothstep(float edge0, float edge1, float x) {
     return t * t * (3.0 - 2.0 * t);
 }
 
-vec3 randomColor() {
-    float noiseValR = snoise(vec3(gl_FragCoord.xy * 0.01, frameCounter * 0.1));
-    float noiseValG = snoise(vec3(gl_FragCoord.xy * 0.02, frameCounter * 0.1)); // Using a different noise value for green
-    float noiseValB = snoise(vec3(gl_FragCoord.xy * 0.03, frameCounter * 0.1)); // Using a different noise value for blue
+vec3 randomColor(float speed) {
+    float noiseValR = snoise(vec3(gl_FragCoord.xy * 0.01, frameCounter * speed));
+    float noiseValG = snoise(vec3(gl_FragCoord.xy * 0.02, frameCounter * speed)); // Using a different noise value for green
+    float noiseValB = snoise(vec3(gl_FragCoord.xy * 0.03, frameCounter * speed)); // Using a different noise value for blue
     
     vec3 color;
     color.r = clamp(noiseValR * 0.5 + 0.5, 0.0, 1.0); // Mapping noise value to the range [0, 1] for red channel

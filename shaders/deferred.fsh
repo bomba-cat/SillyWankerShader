@@ -30,9 +30,9 @@ const int colortex3Format = R11F_G11F_B10F;
 */
 
 #define COLORED_SHADOWS 1 // [0 1]
-const float sunPathRotation = -40.0; // [60.0 50.0 40.0 30.0 20.0 10.0 0.0 -10.0 -20.0 -30.0 -40.0 -50.0 -60.0]
+const float sunPathRotation = 40.0; // [60.0 50.0 40.0 30.0 20.0 10.0 0.0 -10.0 -20.0 -30.0 -40.0 -50.0 -60.0]
 const int shadowMapResolution = 2048; // [256 512 1024 2048 4096 8192 16384]
-const int noiseTextureResolution = 64; // [8 16 32 64 128 256 512]
+const int noiseTextureResolution = 8; // [8 16 32 64 128 256 512]
 
 const float Ambient = 0.025f;
 
@@ -87,7 +87,7 @@ vec3 TransparentShadow(in vec3 SampleCoords){
 }
 
 #define SHADOW_SAMPLES 2 // [1 2 3 4 5 6 7 8]
-#define SHADOW_NOISING 1 // [0 1]
+#define SHADOW_NOISING 0 // [0 1]
 const int ShadowSamplesPerSize = 2 * SHADOW_SAMPLES + 1;
 const int TotalSamples = ShadowSamplesPerSize * ShadowSamplesPerSize;
 

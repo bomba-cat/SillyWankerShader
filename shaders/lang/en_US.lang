@@ -9,8 +9,18 @@ option.green_coefficient=Green Multiplier
 option.green_coefficient.comment=1-No Filter, 0=Full Filter
 option.blue_coefficient=Blue Multiplier
 option.blue_coefficient.comment=1-No Filter, 0=Full Filter
+option.CUSTOM=Type
+option.RGB_SPEED=RGB Speed
+option.SELECTION_RED=Red
+option.SELECTION_GREEN=Green
+option.SELECTION_BLUE=Blue
+
 option.GLINT_TYPE=Glint Effect
 option.GLINT_TYPE.comment=Select which noise effect you want on your glint
+option.GLINT_RED=Red
+option.GLINT_GREEN=Green
+option.GLINT_BLUE=Blue
+option.GLINT_SPEED=Speed
 
 option.shadowMapResolution=Shadow Resolution
 option.shadowMapResolution.comment=Resolution of the Shadows
@@ -38,7 +48,7 @@ value.shadowMapResolution.8192=Very High - 8192
 value.shadowMapResolution.16384=Ultra - 16384
 
 option.color_amount=Palletize
-option.color_amount.comment=can behave weirdly, more colors does not mean better colors
+option.color_amount.comment=May behave weirdly, more colors does not mean better colors
 value.color_amount.0=Off
 value.color_amount.1=5 Colors
 value.color_amount.2=10 Colors
@@ -50,10 +60,19 @@ value.COLORED_SHADOWS.1=On
 value.SHADOW_NOISING.0=Off
 value.SHADOW_NOISING.1=On
 
+value.CUSTOM.0 = Custom
+value.CUSTOM.1 = RGB
+value.RGB_SPEED.0.01=Slow
+value.RGB_SPEED.0.05=Medium
+value.RGB_SPEED.0.1=Fast
+
 value.GLINT_TYPE.0=No Glint
 value.GLINT_TYPE.1=Maze Glint
 value.GLINT_TYPE.2=Circles Glint
 value.GLINT_TYPE.3=Truchet Glint
+value.GLINT_TYPE.4=Linear Fade
+value.GLINT_TYPE.5=Square
+value.GLINT_TYPE.6=Fade in/out
 
 value.SHARPNESS.0=Off
 value.SHARPNESS.1=On
@@ -64,6 +83,9 @@ value.AA.1=On
 screen.SHADOWS=Shadow Options
 screen.WORLD=World Options
 screen.SILLY_FUNCTIONS=Silly Functions
+screen.SELECTION=Outline Selection and Lead
 screen.COLOR_MANIPULATION=Color Manipulation
 screen.OTHERS=Other Options
+screen.GLINT=Glint
+screen.GLINT_COLORING=Colors
 screen.POST=Post Processing
