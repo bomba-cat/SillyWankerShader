@@ -121,6 +121,8 @@ vec3 findClosestColor(vec3 currentColor) {
     return closestColor;
 }
 
+uniform int isEyeInWater;
+
 void main() {
     // Sample and apply gamma correction
     vec3 Color = pow(texture2D(colortex0, TexCoords).rgb, vec3(1.0f / 2.2f));
@@ -138,6 +140,10 @@ void main() {
     #if AA == 1
         Color = fast_taa(Color, TexCoords);
     #endif
+
+    if (isEyeInWater == 1) {
+        Color *= vec3(1.0f, 1.0f, 1.5f);
+    }
 
     gl_FragColor = vec4(Color, 1.0f);
 }

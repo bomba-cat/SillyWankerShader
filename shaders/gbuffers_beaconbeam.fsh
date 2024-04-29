@@ -41,13 +41,12 @@ float snoise(vec2 v){
 void main() {
     float noise_val = snoise(5*vec2(TexCoords.x, TexCoords.y));
     // Sample and apply gamma correction
-    vec4 Color = texture2D(colortex0, TexCoords).rgba;
+    vec3 Color = texture2D(colortex0, TexCoords).rgb;
+    vec4 Corrected = vec4(Color.rgb, noise_val*0.5+0.5);
 
-    // Sample from texture atlas and account for biome color + ambient occlusion
-    vec4 Albedo = texture2D(texture, TexCoords) * Color;
     /* DRAWBUFFERS:012 */
     // Write the values to the color textures
-    gl_FragData[0] = Albedo;
+    gl_FragData[0] = Corrected;
     gl_FragData[1] = vec4(Normal * 0.5f + 0.5f, 1.0f);
     gl_FragData[2] = vec4(LightmapCoords, 0.0f, 1.0f);
 }
