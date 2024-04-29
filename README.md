@@ -22,10 +22,8 @@ Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look o
 - And more to come
 
 ## Known Bugs
-- ~~Hand/Entities/Mobs being Transparent~~
 - Shadows not rendering after 13 chunks
-- ~~Shadow Flickering~~
-- Shadows inside caves
-- Weird Nighttime shadows
+- ~~Shadows inside caves~~
+- ~~Weird Nighttime shadows~~
 
 # Feedback to the Developers are appreciated!
