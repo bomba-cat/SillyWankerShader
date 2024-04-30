@@ -1,3 +1,5 @@
+![Cozy House](https://cdn.modrinth.com/data/iwEbAN22/images/f916c0cf45c67b124fb7584959739ef7d84bebde.png)
+
 # About
 
 Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look of minecraft while still having "shader" features any other shaders have.
