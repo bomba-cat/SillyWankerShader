@@ -12,6 +12,11 @@ Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look o
 - Ambient Occlusion, Add a sort of shadow near touching blocks
 - Gamma Correction, Making sure the scene isnt too dark/bright
 - Color Manipulation, Allowing the user to change how much color gets filtered which can also change the vibe
+- Color Paletizing
+- Custom Glint
+- Custom outline selection
+- Waving water, Next release
+- Free Robux
 
 ## Future Features
 - Anti Aliasing, TAA FXAA and MSAA
