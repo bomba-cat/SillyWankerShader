@@ -5,6 +5,7 @@
 Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look of minecraft while still having "shader" features any other shaders have.
 
 # Download
+- [GitHub](https://github.com/bomba-cat/SillyWankerShader)
 - [CurseForge](https://www.curseforge.com/minecraft/shaders/sillywankershader)
 - [Modrinth](https://modrinth.com/shader/sillywankershader)
 
@@ -28,7 +29,7 @@ Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look o
 - Nicer water
 - And more to come
 
-## Known Bugs
+## Exclusive features, definitely not bugs
 - Shadows not rendering after 13 chunks
 - ~~Shadows inside caves~~
 - ~~Weird Nighttime shadows~~
