@@ -30,7 +30,7 @@ Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look o
 - And more to come
 
 ## Exclusive features, definitely not bugs
-- Shadows not rendering after 13 chunks
+- Shadows not rendering after 13 chunks to save perfomance
 - ~~Shadows inside caves~~
 - ~~Weird Nighttime shadows~~
 
