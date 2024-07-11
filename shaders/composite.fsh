@@ -105,7 +105,7 @@ vec3 GetShadow(float depth) {
         float RandomAngle = texture2D(noisetex, TexCoords * 0.0f).r * 100.0f;
     #endif
     float cosTheta = cos(RandomAngle);
-	float sinTheta = sin(RandomAngle);
+	  float sinTheta = sin(RandomAngle);
     mat2 Rotation =  mat2(cosTheta, -sinTheta, sinTheta, cosTheta) / shadowMapResolution; // We can move our division by the shadow map resolution here for a small speedup
     vec3 ShadowAccum = vec3(0.0f);
     for(int x = -SHADOW_SAMPLES; x <= SHADOW_SAMPLES; x++){
