@@ -122,6 +122,9 @@ vec3 findClosestColor(vec3 currentColor) {
 }
 
 uniform int isEyeInWater;
+uniform float frameTime;
+uniform float viewWidth;
+uniform float viewHeight;
 
 void main() {
     // Sample and apply gamma correction
@@ -141,8 +144,18 @@ void main() {
         Color = fast_taa(Color, TexCoords);
     #endif
 
+    //https://www.shadertoy.com/view/NdKyz1
+    vec2 iResolution = (viewWidth, viewHeight);
+
+    vec2 uv = TexCoords/iResolution.xy;
+
+    float X = uv.x*25.+frameTime;
+    float Y = uv.y*25.+frameTime;
+    uv.y += cos(X+Y)*0.005*cos(Y);
+    uv.x += sin(X-Y)*0.005*sin(Y);
+
     if (isEyeInWater == 1) {
-        Color *= vec3(1.0f, 1.0f, 1.5f);
+        gl_FragColor = texture(colortex0,uv) * vec4(0.2,0.4,.9,1.);
     }
 
     gl_FragColor = vec4(Color, 1.0f);
