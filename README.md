@@ -12,6 +12,7 @@ Silly Wanker Shader is a minecraft shader which aims to bring the vanilla look o
 # Credits
 - Explo_GR, Developer
 - Victor, Playtester, @VIC_TOR_ on YouTube
+- Yoon, Logo Creator and Artist, @yoon_gm on Discord
 - YSS Community, Special love to them
 
 ## Features
