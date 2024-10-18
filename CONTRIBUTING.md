@@ -29,3 +29,52 @@ git push origin feature/my-feature
 
 # But most important of all
 ## Be Silly :3
+
+## Coding Guideline
+### File and Directory structure
+For each feature, create a `.glsl` inside the `lib/` folder for each dimension.
+
+#### Naming scheme
+```bash
+lib/
+|_ {feature_name}.glsl
+```
+or
+```bash
+lib/
+|_ {feature_name}
+    |_ {file_purpose}.glsl
+    |_ {file_purpose}.glsl
+```
+
+### Commenting
+Comments are appreciated and should be clear and simple.
+
+Comments should:
+- be short
+- explain what the function does
+
+Comments should not:
+- be too long
+- be AI generated
+- contain useless or private information
+
+Please note that if you are copying a piece of code for example from shadertoys or other sources, please put the link to the original code as a Comment above the copied Code snippet
+
+### General code structure
+- Keep functions small: Each function should do one thing and do it well.
+- Avoid code duplication: Reuse existing code whenever possible.
+- Write self-documenting code: Choose clear and descriptive names for variables, functions, and classes.
+- Adhere to DRY: Don’t Repeat Yourself – aim for reusable and modular code.
+- Test your code: Ensure that new code includes tests and doesn’t break existing functionality.
+
+also
+- Indentation: Use spaces 2 consistently.
+- Line Length: Limit lines to 80-100 characters where possible.
+
+Please make sure the Functions are customizable, extendable and toggable (meaning there is an option to turn that feature off)
+
+### Variable names
+When using general Variables, you can choose any naming convention you like, but if you use `#define` please make sure you:
+- define the options using `// []`
+- use UPPER_SNAKE_CASE naming convention
