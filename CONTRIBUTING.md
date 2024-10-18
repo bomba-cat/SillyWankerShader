@@ -78,3 +78,24 @@ Please make sure the Functions are customizable, extendable and toggable (meanin
 When using general Variables, you can choose any naming convention you like, but if you use `#define` please make sure you:
 - define the options using `// []`
 - use UPPER_SNAKE_CASE naming convention
+
+### File structure
+This is how a file should be structured
+```glsl
+#version 120
+
+#include "/lib/uniforms.glsl"
+
+//Here you define everything for example
+#define EXAMPLE // [1 2 3]
+
+//Last you include the dependencies
+#include "/lib/{whatever_feature}.glsl"
+
+//Now the main code
+void main() {
+    gl_FragColor = Color;
+}
+
+//Every other function than main should be in a .glsl file
+```
