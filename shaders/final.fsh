@@ -145,9 +145,9 @@ void main() {
     #endif
 
     //https://www.shadertoy.com/view/NdKyz1
-    vec2 iResolution = (viewWidth, viewHeight);
+    vec2 iResolution = vec2(viewWidth, viewHeight);
 
-    vec2 uv = TexCoords/iResolution.xy;
+    vec2 uv = TexCoords / iResolution;
 
     float X = uv.x*25.+frameTime;
     float Y = uv.y*25.+frameTime;
