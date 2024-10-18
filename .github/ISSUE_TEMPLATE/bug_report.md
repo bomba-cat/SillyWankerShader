@@ -20,6 +20,6 @@ If you got any error message from Iris or Optifine please paste it in here
 If you got a visual Bug please send a screenshot/video/link here
 
 **Make sure that**
-[ ] You are on a Supported Iris/Optifine Version
-[ ] That your Minecraft version is supported
-[ ] If you pasted a link, that the link is safe and accessible (if you didnt then cross it)
+- [ ] You are on a Supported Iris/Optifine Version
+- [ ] That your Minecraft version is supported
+- [ ] If you pasted a link, that the link is safe and accessible (if you didnt then cross it)
