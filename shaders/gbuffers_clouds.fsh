@@ -16,7 +16,7 @@ void main(){
     #if RAINBOW_CLOUDS == 1
       vec3 color = randomColor(0.01);
     #else
-      vec3 color = Color.rgb
+      vec3 color = Color.rgb;
     #endif
 
     // gl_FragColor = Color;    // For debugging
