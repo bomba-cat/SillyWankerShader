@@ -1,0 +1,17 @@
+height = 3
+width = 3
+
+ 1  2  3
+[r][r][g] 1
+[r][g][b] 2
+[g][b][b] 3
+
+RGB
+
+[g, b, b]
+[r, g, b]
+[r, r, g]
+
+R = height * 0 + idx
+G = height * 1 + idx
+B = height * 2 + idx
