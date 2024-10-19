@@ -12,14 +12,14 @@ uniform int frameCounter;
 vec2 u_resolution = vec2(viewWidth, viewHeight);
 float u_time = frameTime;
 
-#include "/lib/noise/generic.glsl"
-#include "/lib/noise/truchet_pattern.glsl"
-
 #define GLINT_TYPE 4 // [0 1 2 3 4 5 6]
 #define GLINT_SPEED 1 // [1 2 3 4 5 6 7 8 9 10]
 #define GLINT_RED 1 // [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1]
 #define GLINT_GREEN 1 // [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1]
 #define GLINT_BLUE 1 // [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1]
+
+#include "/lib/noise/generic.glsl"
+#include "/lib/noise/truchet_pattern.glsl"
 
 void main() {
     vec2 st = (gl_FragCoord.xy + frameCounter * GLINT_SPEED)/u_resolution.xy;

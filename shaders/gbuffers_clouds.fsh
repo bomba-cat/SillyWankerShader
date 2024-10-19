@@ -8,7 +8,7 @@ varying vec4 Color;
 // The texture atlas
 uniform sampler2D texture;
 
-#include "lib/random_color.glsl"
+#include "/lib/noise/random_color.glsl"
 
 void main(){
     vec3 color = randomColor(0.01);

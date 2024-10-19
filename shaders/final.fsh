@@ -6,22 +6,22 @@ uniform sampler2D colortex0;
 uniform sampler2D colortex1;
 uniform sampler2D colortex3;
 
+uniform float pixel_size_x;
+uniform float pixel_size_y;
+
+uniform int isEyeInWater;
+uniform float frameTime;
+uniform float viewWidth;
+uniform float viewHeight;
+
 #define red_coefficient 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define green_coefficient 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define blue_coefficient 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define SHARPNESS 0 // [0 1]
 #define AA 0 // [0 1]
 
-uniform float pixel_size_x;
-uniform float pixel_size_y;
-
 #include "/lib/anti_aliasing/taa.glsl"
 #include "/lib/palettize_colors.glsl"
-
-uniform int isEyeInWater;
-uniform float frameTime;
-uniform float viewWidth;
-uniform float viewHeight;
 
 void main() {
     // Sample and apply gamma correction

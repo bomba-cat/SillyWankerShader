@@ -1,6 +1,6 @@
 #version 120
 
-#include "distort.glsl"
+#include "/lib/distort.glsl"
 
 varying vec2 TexCoords;
 varying vec4 Color;

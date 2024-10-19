@@ -3,13 +3,13 @@
 varying vec2 TexCoords;
 varying vec4 Color;
 
-#include "lib/random_color.glsl"
-
 #define SELECTION_RED 2 // [0 1 2]
 #define SELECTION_GREEN 0 // [0 1 2]
 #define SELECTION_BLUE 1 // [0 1 2]
 #define CUSTOM 0 // [0 1]
 #define RGB_SPEED 0.05 // [0.01 0.05 0.1]
+
+#include "/lib/random_color.glsl"
 
 void main() {
     #if CUSTOM == 1
