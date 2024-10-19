@@ -12,23 +12,8 @@ uniform int frameCounter;
 vec2 u_resolution = vec2(viewWidth, viewHeight);
 float u_time = frameTime;
 
-float random (in vec2 _st) {
-    return fract(sin(dot(_st.xy,
-                         vec2(12.9898,78.233)))*
-        43758.5453123);
-}
-
-vec2 truchetPattern(in vec2 _st, in float _index){
-    _index = fract(((_index-0.5)*2.0));
-    if (_index > 0.75) {
-        _st = vec2(1.0) - _st;
-    } else if (_index > 0.5) {
-        _st = vec2(1.0-_st.x,_st.y);
-    } else if (_index > 0.25) {
-        _st = 1.0-vec2(1.0-_st.x,_st.y);
-    }
-    return _st;
-}
+#include "/lib/noise/generic.glsl"
+#include "/lib/noise/truchet_pattern.glsl"
 
 #define GLINT_TYPE 4 // [0 1 2 3 4 5 6]
 #define GLINT_SPEED 1 // [1 2 3 4 5 6 7 8 9 10]
@@ -45,7 +30,7 @@ void main() {
     vec2 ipos = floor(st);  // integer
     vec2 fpos = fract(st);  // fraction
 
-    vec2 tile = truchetPattern(fpos, random( ipos ));
+    vec2 tile = truchetPattern(fpos, randomGeneric2( ipos ));
 
     float color = 0.0;
 
@@ -64,11 +49,11 @@ void main() {
         color = step(tile.x,tile.y);
     #elif GLINT_TYPE == 4
         //Linear Fade
-        color = random(vec2(TexCoords.x)/((6000+frameCounter)*GLINT_SPEED));
+        color = randomGeneric2(vec2(TexCoords.x)/((6000+frameCounter)*GLINT_SPEED));
 
     #elif GLINT_TYPE == 5
         //Square
-        color = 0.5 * random(vec2(TexCoords.x)/((6000+frameCounter)*GLINT_SPEED)) + 0.5 * random(vec2(TexCoords.y/((6000+frameCounter)*GLINT_SPEED)));
+        color = 0.5 * randomGeneric2(vec2(TexCoords.x)/((6000+frameCounter)*GLINT_SPEED)) + 0.5 * randomGeneric2(vec2(TexCoords.y/((6000+frameCounter)*GLINT_SPEED)));
 
     #elif GLINT_TYPE == 6
         //Fade in/out

@@ -19,6 +19,7 @@ void main(){
     vec4 newPositionInv = gl_ModelViewMatrix * newPosition;
     vec4 newPositionModel = gbufferModelViewInverse  * newPositionInv;
 
+    // World Curvature
     #if WORLD_CURVED == 1
         newPositionModel.y += pow(CURVE_STRENGHT*newPosition.z, 2);
         newPositionModel.y += pow(CURVE_STRENGHT*newPosition.x, 2);
