@@ -5,7 +5,7 @@
 varying vec2 TexCoords;
 
 // Direction of the sun (not normalized!)
-uniform vec3 sunPosition;
+uniform vec3 shadowLightPosition;
 
 // The color textures which we wrote to
 uniform sampler2D colortex0;
@@ -21,13 +21,6 @@ uniform mat4 gbufferProjectionInverse;
 uniform mat4 gbufferModelViewInverse;
 uniform mat4 shadowModelView;
 uniform mat4 shadowProjection;
-
-/*
-const int colortex0Format = RGBA16F;
-const int colortex1Format = R11F_G11F_B10F;
-const int colortex2Format = R11F_G11F_B10F;
-const int colortex3Format = R11F_G11F_B10F;
-*/
 
 #define COLORED_SHADOWS 1 // [0 1]
 const float sunPathRotation = 40.0; // [60.0 50.0 40.0 30.0 20.0 10.0 0.0 -10.0 -20.0 -30.0 -40.0 -50.0 -60.0]
@@ -62,36 +55,52 @@ vec3 GetLightmapColor(in vec2 Lightmap){
     // Color of the torch and sky. The sky color changes depending on time of day but I will ignore that for simplicity
     const vec3 TorchColor = vec3(1.0f, 0.25f, 0.08f);
     const vec3 SkyColor = vec3(0.05f, 0.15f, 0.3f);
-    // Multiply each part of the light map with it's color
+    // Multiply each part of the light map with its color
     vec3 TorchLighting = Lightmap.x * TorchColor;
     vec3 SkyLighting = Lightmap.y * SkyColor;
-    // Add the lighting together to get the total contribution of the lightmap the final color.
+    // Add the lighting together to get the total contribution of the lightmap's final color.
     vec3 LightmapLighting = TorchLighting + SkyLighting;
     // Return the value
     return LightmapLighting;
 }
 
-float ESMShadowVisibility(sampler2D shadowMap, vec3 sampleCoords) {
-    float depth = texture2D(shadowMap, sampleCoords.xy).r;
-    return exp(-C * max(0.0, sampleCoords.z - depth));
+// PCF Shadow Visibility Calculation
+float PCFShadowVisibility(sampler2D shadowMap, vec3 sampleCoords, int sampleRadius) {
+    float shadow = 0.0;
+    vec2 texelSize = 1.0 / vec2(textureSize(shadowMap, 0));  // Get texel size
+    for(int x = -sampleRadius; x <= sampleRadius; ++x) {
+        for(int y = -sampleRadius; y <= sampleRadius; ++y) {
+            vec2 offset = vec2(x, y) * texelSize;
+            float depth = texture2D(shadowMap, sampleCoords.xy + offset).r;
+            if(depth < sampleCoords.z) {
+                shadow += 1.0;
+            }
+        }
+    }
+    int totalSamples = (2 * sampleRadius + 1) * (2 * sampleRadius + 1);
+    return clamp(1.0 - (shadow / float(totalSamples)), 0.0, 1.0);  // Clamp shadow visibility between 0 and 1
 }
 
-vec3 TransparentShadow(vec3 sampleCoords){
-    float shadowVisibility0 = ESMShadowVisibility(shadowtex0, sampleCoords);
-    float shadowVisibility1 = ESMShadowVisibility(shadowtex1, sampleCoords);
+// TransparentShadow function with PCF
+vec3 TransparentShadow(vec3 sampleCoords, int sampleRadius) {
+    float shadowVisibility0 = PCFShadowVisibility(shadowtex0, sampleCoords, sampleRadius);
+    float shadowVisibility1 = PCFShadowVisibility(shadowtex1, sampleCoords, sampleRadius);
+    
     #if COLORED_SHADOWS == 0
-        vec4 shadowColor0 = vec4(1.0, 1.0, 1.0, 0.5);
+        vec4 shadowColor0 = vec4(1.0, 1.0, 1.0, 0.5);  // White shadow if not using colored shadows
     #else
-        vec4 shadowColor0 = texture2D(shadowcolor0, sampleCoords.xy);
+        vec4 shadowColor0 = texture2D(shadowcolor0, sampleCoords.xy);  // Fetch the colored shadow texture
     #endif
-    vec3 transmittedColor = shadowColor0.rgb * (1.0 - shadowColor0.a); // Perform a blend operation with the sun color
-    return mix(transmittedColor * shadowVisibility1, vec3(1.0), shadowVisibility0);
+    
+    vec3 transmittedColor = shadowColor0.rgb * (1.0 - shadowColor0.a);
+    return mix(transmittedColor * shadowVisibility1, vec3(1.0), shadowVisibility0);  // Blend shadow visibility
 }
 
 #define SHADOW_SAMPLES 2 // [1 2 3 4 5 6 7 8]
 #define SHADOW_NOISING 1 // [0 1]
 
-vec3 GetShadow(float depth) {
+// GetShadow function using PCF for soft shadows
+vec3 GetShadow(float depth, int sampleRadius) {
     vec3 clipSpace = vec3(TexCoords, depth) * 2.0 - 1.0;
     vec4 viewW = gbufferProjectionInverse * vec4(clipSpace, 1.0);
     vec3 view = viewW.xyz / viewW.w;
@@ -100,26 +109,7 @@ vec3 GetShadow(float depth) {
     shadowSpace.xy = DistortPosition(shadowSpace.xy - 0.0002);
     vec3 sampleCoords = shadowSpace.xyz * 0.5 + 0.5;
 
-    float randomAngle;
-    #if SHADOW_NOISING == 1
-        randomAngle = texture2D(noisetex, TexCoords * 10.0).r * 100.0;
-    #else
-        randomAngle = texture2D(noisetex, TexCoords * 0.0).r * 100.0;
-    #endif
-    float cosTheta = cos(randomAngle);
-    float sinTheta = sin(randomAngle);
-    mat2 rotation = mat2(cosTheta, -sinTheta, sinTheta, cosTheta) / shadowMapResolution;
-
-    vec3 shadowAccum = vec3(0.0);
-    for (int x = -SHADOW_SAMPLES; x <= SHADOW_SAMPLES; x++) {
-        for (int y = -SHADOW_SAMPLES; y <= SHADOW_SAMPLES; y++) {
-            vec2 offset = rotation * vec2(x, y);
-            vec3 currentSampleCoordinate = vec3(sampleCoords.xy + offset, sampleCoords.z);
-            shadowAccum += TransparentShadow(currentSampleCoordinate);
-        }
-    }
-    shadowAccum /= (2 * SHADOW_SAMPLES + 1) * (2 * SHADOW_SAMPLES + 1);
-    return shadowAccum;
+    return TransparentShadow(sampleCoords, sampleRadius);  // Use PCF with sample radius
 }
 
 #define DEFERREDVAL 0 // [0 1 2]
@@ -138,9 +128,11 @@ void main(){
     vec2 lightmap = texture2D(colortex2, TexCoords).rg;
     vec3 lightmapColor = GetLightmapColor(lightmap);
     // Compute cos theta between the normal and sun directions
-    float NdotL = max(dot(normal, normalize(sunPosition)), 0.15);
+    float NdotL = max(dot(normal, normalize(shadowLightPosition)), 0.0f);
     // Do the lighting calculations
-    vec3 diffuse = albedo * (lightmapColor + NdotL * GetShadow(depth) + Ambient);
+    vec3 shadowColor = GetShadow(depth, 2);  // You can adjust the sample radius (2 is used here)
+
+    vec3 diffuse = albedo * (lightmapColor + NdotL * shadowColor + Ambient);
     /* DRAWBUFFERS:0123 */
     // Finally write the diffuse color
     gl_FragData[0] = vec4(diffuse, 1.0);
