@@ -48,9 +48,9 @@ void main() {
     if (waterScreenSpaceCoords.a == 1) {
         vec2 inversePosition = clamp(vec2(TexCoords.x, 1.0 - TexCoords.y), 0.0, 1.0);
         vec3 reflectionColor = texture2D(colortex0, inversePosition).rgb;
-        float reflectionFactor = smoothstep(0.0, 1.0, brightness(reflectionColor));
+        //float reflectionFactor = smoothstep(0.0, 1.0, brightness(reflectionColor));
 
-        Color = mix(Color, reflectionColor, reflectionFactor);
+        Color = mix(Color, reflectionColor, 0.6);
 
         //0.5 + (0.5 - TexCoords.y)
     }

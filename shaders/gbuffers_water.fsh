@@ -9,7 +9,6 @@ varying vec4 Color;
 uniform sampler2D texture;
 
 void main(){
-    // Sample from texture atlas and account for biome color + ambient occlusion
     vec4 Albedo = texture2D(texture, TexCoords) * Color;
     // Write the values to the color textures
     /* DRAWBUFFERS:0124 */
