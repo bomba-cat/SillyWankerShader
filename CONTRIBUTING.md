@@ -1,5 +1,13 @@
 # Contributing to SillyWankerShader
 
+## Before we start
+### Ideaology
+The basic idea of SillyWankerShader is following:
+- Everything is a feature and can be toggled
+- Everything has a set of parameters to change behaviour
+- The shader should be highly customizable
+- Everyone is free to contribute to SillyWankerShader
+
 ## How Can I Contribute?
 
 ### Creating Issues
@@ -13,7 +21,7 @@ Make sure that:
 ### Pull Requests
 1. First of, **Fork** the repository and create a Branch
 ```bash
-git checkout -B update/your_user_name
+git checkout -B feature/my-feature
 ```
 
 2. **Make your changes** following our coding guidelines.
@@ -48,7 +56,7 @@ lib/
 ```
 
 ### Commenting
-Comments are appreciated and should be clear and simple.
+Comments should be clear and simple.
 
 Comments should:
 - be short
@@ -59,43 +67,23 @@ Comments should not:
 - be AI generated
 - contain useless or private information
 
+Comments are not nessecary at all, if you write clean and readable code thats already enough.
+
 Please note that if you are copying a piece of code for example from shadertoys or other sources, please put the link to the original code as a Comment above the copied Code snippet
 
 ### General code structure
 - Keep functions small: Each function should do one thing and do it well.
 - Avoid code duplication: Reuse existing code whenever possible.
-- Write self-documenting code: Choose clear and descriptive names for variables, functions, and classes.
+- Write self-documenting code: Choose clear and descriptive names for variables and functions.
 - Adhere to DRY: Don’t Repeat Yourself – aim for reusable and modular code.
-- Test your code: Ensure that new code includes tests and doesn’t break existing functionality.
 
 also
 - Indentation: Use spaces 2 consistently.
 - Line Length: Limit lines to 80-100 characters where possible.
 
-Please make sure the Functions are customizable, extendable and toggable (meaning there is an option to turn that feature off)
+Please make sure the Functions are customizable, extendable and toggable (meaning there is an option to turn that feature off).
 
 ### Variable names
 When using general Variables, you can choose any naming convention you like, but if you use `#define` please make sure you:
 - define the options using `// []`
 - use UPPER_SNAKE_CASE naming convention
-
-### File structure
-This is how a file should be structured
-```glsl
-#version 120
-
-#include "/lib/uniforms.glsl"
-
-//Here you define everything for example
-#define EXAMPLE // [1 2 3]
-
-//Last you include the dependencies
-#include "/lib/{whatever_feature}.glsl"
-
-//Now the main code
-void main() {
-    gl_FragColor = Color;
-}
-
-//Every other function than main should be in a .glsl file
-```

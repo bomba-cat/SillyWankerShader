@@ -1,8 +1,9 @@
-#version 120
+#version 330 compatibility
 
-varying vec2 TexCoords;
+out vec2 TexCoord;
 
-void main() {
-   gl_Position = ftransform();
-   TexCoords = gl_MultiTexCoord0.st;
+void main()
+{
+  gl_Position = ftransform();
+  TexCoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
 }
