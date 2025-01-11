@@ -18,6 +18,12 @@ layout(location = 2) out vec4 lightmapcoords;
 void main()
 {
   color = texture(texture, TexCoord) * Color;
-  normal = get_normal(Normal);
-  lightmapcoords = get_lightmap(LightmapCoords);
+
+  if (color.a < 0.1) //Skip transparent pixels
+  {
+    discard;
+  }
+
+  normal = fsh_get_normal(Normal);
+  lightmapcoords = fsh_get_lightmap(LightmapCoords);
 }

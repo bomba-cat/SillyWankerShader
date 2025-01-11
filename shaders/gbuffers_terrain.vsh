@@ -1,5 +1,8 @@
 #version 330 compatibility
 
+#include "/lib/lightmap.glsl"
+#include "/lib/normal.glsl"
+
 out vec2 TexCoord;
 out vec2 LightmapCoord;
 out vec3 Normal;
@@ -9,8 +12,7 @@ void main()
 {
   gl_Position = ftransform();
   TexCoord = gl_MultiTexCoord0.xy;
-  LightmapCoords = mat2(gl_TextureMatrix[1]) * gl_MultiTexCoord0.st;
-  LightmapCoords = (LightmapCoords * 33.05f / 32.0f) - (1.05f / 32.0f);
-  Normal = gl_NormalMatrix * gl_Normal;
+  LightmapCoords = vsh_get_lightmap();
+  Normal = vsh_get_normal();
   Color = gl_Color;
 }
