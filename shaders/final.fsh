@@ -1,8 +1,9 @@
 #version 330 compatibility
 
-in vec2 TexCoord;
+#include "/lib/uniforms.glsl"
+#include "/lib/common.glsl"
 
-uniform sampler2D colortex0;
+in vec2 TexCoord;
 
 /* RENDERTARGET: 0 */
 layout(location = 0) out vec3 color;

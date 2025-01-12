@@ -1,9 +1,9 @@
 #ifndef NORMAL_GLSL
 #define NORMAL_GLSL
 
-vec4 fsh_get_normal(vec3 Normal)
+vec3 fsh_get_normal(vec3 Normal)
 {
-  return vec4(Normal * 0.5f + 0.5f, 1.0f);
+  return Normal * 0.5f + 0.5f;
 }
 
 vec3 vsh_get_normal()

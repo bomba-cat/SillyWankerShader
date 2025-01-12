@@ -1,16 +1,6 @@
 #ifndef SHADOW_GLSL
 #define SHADOW_GLSL
 
-uniform mat4 gbufferProjectionInverse;
-uniform mat4 gbufferModelViewInverse;
-uniform mat4 shadowModelView;
-uniform mat4 shadowProjection;
-
-uniform sampler2D depthtex0;
-uniform sampler2D shadowtex0;
-uniform sampler2D shadowtex1;
-uniform sampler2D shadowcolor0;
-
 float PCFShadowVisibility(sampler2D shadowMap, vec3 sampleCoords, int sampleRadius) 
 {
   float shadow = 0.0;

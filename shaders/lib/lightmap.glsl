@@ -8,7 +8,7 @@ vec4 fsh_get_lightmap(vec2 LightmapCoords)
 
 vec2 vsh_get_lightmap()
 {
-  vec2 lightmapCoords = mat2(gl_TextureMatrix[1]) * gl_MultiTexCoord0.st;
+  vec2 lightmapCoords = mat2(gl_TextureMatrix[1]) * gl_MultiTexCoord1.st;
   return (lightmapCoords * 33.05f / 32.0f) - (1.05f / 32.0f);
 }
 
