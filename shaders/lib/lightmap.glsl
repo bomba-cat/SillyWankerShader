@@ -1,51 +1,37 @@
 #ifndef LIGHTMAP_GLSL
 #define LIGHTMAP_GLSL
 
-vec4 fsh_get_lightmap(vec2 LightmapCoords)
+const vec3 blocklightColor = vec3(1.0, 0.5, 0.08);
+const vec3 skylightColor = vec3(0.05, 0.15, 0.3);
+const vec3 sunlightColor = vec3(1.0);
+const vec3 ambientColor = vec3(0.1);
+
+vec2 vsh_correct_lightmap(vec2 lightmap)
 {
-  return vec4(LightmapCoords, 0.0f, 1.0f);
+  return (lightmap * 33.05 / 32.0) - (1.05 / 32.0);
 }
 
-vec2 vsh_get_lightmap()
+vec4 fsh_lightmapData(vec2 lightmapCoord)
 {
-  vec2 lightmapCoords = mat2(gl_TextureMatrix[1]) * gl_MultiTexCoord1.st;
-  return (lightmapCoords * 33.05f / 32.0f) - (1.05f / 32.0f);
+  return vec4(lightmapCoord, 0.0, 1.0);
 }
 
-float AdjustLightmapTorch(float torch)
+vec2 fsh_getLightmap(vec2 texcoord)
 {
-  const float K = 2.0f;
-  const float P = 5.06;
-  return K * pow(torch, P);
+  return texture(colortex1, texcoord).rg;
 }
 
-float AdjustLightmapSky(float sky)
+vec3 fsh_apply_lightColors(vec2 lightmap, vec3 normal)
 {
-  float sky_2 = sky * sky;
-  return sky_2 * sky_2;
-}
+  vec3 blocklight = lightmap.r * blocklightColor;
+  vec3 skylight = lightmap.g * skylightColor;
+  vec3 ambient = ambientColor;
 
-vec2 AdjustLightmap(vec2 Lightmap)
-{
-  vec2 NewLightMap;
-  NewLightMap.x = AdjustLightmapTorch(Lightmap.x);
-  NewLightMap.y = AdjustLightmapSky(Lightmap.y);
-  return NewLightMap;
-}
+  vec3 lightVector = normalize(shadowLightPosition);
+  vec3 worldLightVector = mat3(gbufferModelViewInverse) * lightVector;
 
-vec3 GetLightmapColor(vec2 Lightmap)
-{
-  Lightmap = AdjustLightmap(Lightmap);
-  
-  const vec3 TorchColor = vec3(1.0f, 0.25f, 0.08f);
-  const vec3 SkyColor = vec3(0.05f, 0.15f, 0.3f);
-
-  vec3 TorchLighting = Lightmap.x * TorchColor;
-  vec3 SkyLighting = Lightmap.y * SkyColor;
-
-  vec3 LightmapLighting = TorchLighting + SkyLighting;
-
-  return LightmapLighting;
+  vec3 sunlight = sunlightColor * clamp(dot(worldLightVector, normal), 0.0, 1.0) * lightmap.g;
+  return blocklight + skylight + ambient + sunlight;
 }
 
 #endif

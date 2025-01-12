@@ -1,14 +1,16 @@
 #version 330 compatibility
 
 #include "/lib/uniforms.glsl"
-#include "/lib/common.glsl"
+#include "/lib/color/basic_color.glsl"
+#include "/lib/gamma.glsl"
 
 in vec2 TexCoord;
 
 /* RENDERTARGET: 0 */
-layout(location = 0) out vec3 color;
+layout(location = 0) out vec4 color;
 
 void main()
 {
-  color = pow(texture(colortex0, TexCoord).rgb, vec3(1.0f / 2.2f));
+  color = fsh_basic_color(TexCoord);
+  color.rgb = fsh_apply_inversegamma(color);
 }
