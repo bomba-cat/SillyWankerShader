@@ -1,5 +1,6 @@
 #version 330 compatibility
 
+#include "/lib/common.glsl"
 #include "/lib/uniforms.glsl"
 #include "/lib/color/basic_color.glsl"
 #include "/lib/lightmap.glsl"
