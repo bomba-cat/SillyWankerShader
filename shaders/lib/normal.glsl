@@ -1,6 +1,3 @@
-#ifndef NORMAL_GLSL
-#define NORMAL_GLSL
-
 vec3 vsh_get_normal()
 {
   return gl_NormalMatrix * gl_Normal;
@@ -21,5 +18,3 @@ vec3 fsh_get_normalized(vec2 texcoord)
   vec3 encodedNormal = texture(colortex2, texcoord).rgb;
   return normalize((encodedNormal - 0.5) * 2.0);
 }
-
-#endif

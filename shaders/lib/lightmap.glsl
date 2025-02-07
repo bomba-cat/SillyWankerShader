@@ -1,6 +1,3 @@
-#ifndef LIGHTMAP_GLSL
-#define LIGHTMAP_GLSL
-
 const vec3 blocklightColor = vec3(0.9451, 0.7294, 0.5373);
 const vec3 skylightColor = vec3(0.05, 0.15, 0.3);
 const vec3 sunlightColor = vec3(1.0, 0.9686, 0.8392);
@@ -33,5 +30,3 @@ vec3 fsh_apply_lightColors(vec2 lightmap, vec3 normal)
   vec3 sunlight = sunlightColor * clamp(dot(worldLightVector, normal), 0.0, 1.0) * lightmap.g;
   return blocklight + skylight + ambient + sunlight;
 }
-
-#endif
