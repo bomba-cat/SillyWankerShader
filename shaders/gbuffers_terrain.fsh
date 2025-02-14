@@ -20,9 +20,8 @@ layout(location = 2) out vec4 normal;
 
 void main()
 {
-  color.rgb = Normal;
-  //color = fsh_basic_gtexture(TexCoord, Color);
-  //color.rgb = fsh_apply_gamma(color);
+  color = fsh_basic_gtexture(TexCoord, Color);
+  color.rgb = fsh_apply_gamma(color);
 
   float depth = fsh_get_depth(TexCoord);
   if (depth == 1.0)

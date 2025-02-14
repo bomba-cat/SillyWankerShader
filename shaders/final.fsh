@@ -4,7 +4,7 @@
 #include "/lib/uniforms.glsl"
 #include "/lib/color/basic_color.glsl"
 #include "/lib/gamma.glsl"
-#include "lib/tonemapping.glsl"
+#include "/lib/tonemapping.glsl"
 
 
 in vec2 TexCoord;

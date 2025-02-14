@@ -1,4 +1,4 @@
-#include "lib/tonemapping_variables.glsl"
+#include "/lib/tonemapping_variables.glsl"
 
 //base uncharted2 tonemap calculation
 vec3 uncharted2Tonemap(vec3 x) {
