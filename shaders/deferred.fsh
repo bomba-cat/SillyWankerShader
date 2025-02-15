@@ -3,9 +3,11 @@
 #include "/lib/common.glsl"
 #include "/lib/uniforms.glsl"
 #include "/lib/color/basic_color.glsl"
+#include "/lib/depth.glsl"
 #include "/lib/lightmap.glsl"
 #include "/lib/normal.glsl"
-#include "/lib/depth.glsl"
+#include "/lib/distort.glsl"
+#include "/lib/shadowmap.glsl"
 
 in vec2 TexCoord;
 
@@ -21,4 +23,11 @@ void main()
   {
     return;
   }
+
+  vec2 lightmap = fsh_getLightmap(TexCoord);
+  vec3 normal = fsh_get_normalized(TexCoord);
+
+  vec3 shadow = getSoftShadow(TexCoord, depth);
+  
+  color.rgb *= fsh_apply_lightColors(lightmap, normal, shadow);
 }
