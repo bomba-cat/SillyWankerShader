@@ -5,6 +5,7 @@
 #include "/lib/color/basic_color.glsl"
 #include "/lib/lightmap.glsl"
 #include "/lib/normal.glsl"
+#include "/lib/depth.glsl"
 
 in vec2 TexCoord;
 
@@ -14,6 +15,13 @@ layout(location = 0) out vec4 color;
 void main()
 {
   color = fsh_basic_color(TexCoord);
+  float depth = fsh_get_depth(TexCoord);
+
+  if (depth == 1.0)
+  {
+    return;
+  }
+  
   vec2 lightmap = fsh_getLightmap(TexCoord);
   vec3 normal = fsh_get_normalized(TexCoord);
   color.rgb *= fsh_apply_lightColors(lightmap, normal);
