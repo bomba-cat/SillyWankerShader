@@ -27,7 +27,7 @@ void main()
   vec2 lightmap = fsh_getLightmap(TexCoord);
   vec3 normal = fsh_get_normalized(TexCoord);
 
-  vec3 shadow = getSoftShadow(TexCoord, depth);
+  vec3 shadow = fsh_getShadow(TexCoord, depth);
   
   color.rgb *= fsh_apply_lightColors(lightmap, normal, shadow);
 }

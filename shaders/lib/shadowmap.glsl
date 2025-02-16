@@ -80,3 +80,8 @@ vec3 getSoftShadow(vec2 texcoord, float depth)
 
   return shadowAccum / float(samples);
 }
+
+vec3 fsh_getShadow(vec2 texcoord, float depth)
+{
+  return getSoftShadow(texcoord, depth);
+}
