@@ -19,6 +19,12 @@ uniform mat4 gbufferModelViewInverse;
 uniform mat4 gbufferProjectionInverse;
 uniform mat4 shadowModelView;
 uniform mat4 shadowProjection;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+uniform int blockEntityId;
+
+uniform int frameCounter;
 
 uniform sampler2D gtexture;
 

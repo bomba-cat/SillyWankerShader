@@ -11,5 +11,5 @@ layout(location = 0) out vec4 color;
 
 void main()
 {
-  color + fsh_basic_gtexture(TexCoord, Color);
+  color = fsh_basic_gtexture(TexCoord, Color);
 }
