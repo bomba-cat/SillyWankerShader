@@ -1,6 +1,8 @@
 uniform sampler2D colortex0;
 uniform sampler2D colortex1;
 uniform sampler2D colortex2;
+uniform sampler2D colortex7;
+uniform sampler2D colortexN;
 
 uniform sampler2D depthtex0;
 uniform sampler2D depthtex1;
@@ -17,6 +19,7 @@ uniform float viewHeight;
 
 uniform mat4 gbufferModelViewInverse;
 uniform mat4 gbufferProjectionInverse;
+uniform mat4 gbufferProjection;
 uniform mat4 shadowModelView;
 uniform mat4 shadowProjection;
 uniform mat4 modelViewMatrix;
@@ -31,3 +34,5 @@ uniform sampler2D gtexture;
 uniform sampler2D lightmap;
 
 uniform vec3 shadowLightPosition;
+
+uniform int isEyeInWater;

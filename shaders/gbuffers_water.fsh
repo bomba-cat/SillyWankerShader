@@ -22,7 +22,7 @@ void main()
 {
   color = fsh_basic_gtexture(TexCoord, Color);
   color.rgb = fsh_apply_gamma(color);
-  color *= vec4(vec3(0.6), 0.7);
+  color *= vec4(vec3(0.6), 0.4);
   
   lightmapData = fsh_lightmapData(LightmapCoord);
 

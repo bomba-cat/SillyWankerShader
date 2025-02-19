@@ -14,6 +14,8 @@ const int colortex2Format = RGB16F;
 #define SHADOW_NOISERESOLUTION 2048 // [8 216 512 1024 1536 2048 2560 3072 3584 4096 4608 8128]
 //
 #define SUN_PATHROTATION 40 // [-50 -45 -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 15 20 25 30 35 40 45 50]
+//
+#define GODRAY_SAMPLES 24 // [0 24]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;
