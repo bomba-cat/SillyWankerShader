@@ -8,6 +8,7 @@ const int colortex1Format = RGB16F;
 const int colortex2Format = RGB16F;
 */
 
+#define SHADOW_ENABLED 1 // [0 1]
 #define SHADOW_RESOLUTION 4096 // [512 1024 1536 2048 2560 3072 3584 4096 4608 8128]
 #define SHADOW_QUALITY 2 // [1 2 3 4 5 6 7 8]
 #define SHADOW_SOFTNESS 2 // [2 3 4 5 6 7 8]
@@ -15,7 +16,9 @@ const int colortex2Format = RGB16F;
 //
 #define SUN_PATHROTATION 40 // [-50 -45 -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 15 20 25 30 35 40 45 50]
 //
-#define GODRAY_SAMPLES 24 // [0 24]
+#define GODRAYS_SAMPLES 24 // [0 24 36]
+//
+#define TONEMAPPING 0 // [0 1]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;
@@ -23,5 +26,13 @@ const bool shadowcolor0Nearest = true;
 const float sunPathRotation = SUN_PATHROTATION;
 const int noiseTextureResolution = SHADOW_NOISERESOLUTION;
 const int shadowMapResolution = SHADOW_RESOLUTION;
-const float waveHeight = 0.2;
+const float waveHeight = 0.25;
 const float waveSpeed = 0.05;
+float exposure = 0.41;
+float decay = 0.91;
+float density = 1.2;
+float weight = 1.0;
+vec3 earlyGodrayColor = vec3(1.0, 0.4157, 0.0);
+vec3 godrayColor = vec3(1.9882, 1.6824, 1.4314);
+vec3 moonrayColor = vec3(0.1608, 0.2941, 0.9608);
+vec3 waterTint = vec3(0.1412, 0.7412, 1.0);

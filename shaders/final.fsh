@@ -15,5 +15,9 @@ layout(location = 0) out vec4 color;
 void main()
 {
   color = fsh_basic_color(TexCoord);
-  color.rgb = uncharted2(pow(color.rgb, vec3 (1.0/2.2)));
+  #if TONEMAPPING == 0
+    color.rgb = fsh_apply_inversegamma(color);  
+  #elif TONEMAPPING == 1
+    color.rgb = uncharted2(pow(color.rgb, vec3 (1.0/2.2)));
+  #endif
 }

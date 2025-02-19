@@ -1,13 +1,4 @@
-  float exposure = 0.36;
-  float decay = 0.87;
-  float density = 1.0;
-  float weight = 1.0;
-  vec3 earlyGodrayColor = vec3(1.0, 0.4157, 0.0);
-  vec3 godrayColor = vec3(0.9882, 0.6824, 0.4314);
-  vec3 moonrayColor = vec3(0.1608, 0.2941, 0.9608);
-  vec3 waterTint = vec3(0.1412, 0.7412, 1.0);
-
-vec3 doGodrays(vec2 texcoord) {
+vec3 doGodrays(vec3 color, vec2 texcoord) {
   color = vec3(0);
 
   vec2 altCoord = texcoord;

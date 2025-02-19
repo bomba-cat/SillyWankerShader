@@ -6,15 +6,24 @@
 #include "/lib/lightmap.glsl"
 #include "/lib/normal.glsl"
 #include "/lib/depth.glsl"
+#include "/lib/utilFunctions.glsl"
+#include "/lib/godrays.glsl"
 
 in vec2 TexCoord;
 
-/* RENDERTARGET: 0 */
-layout(location = 0) out vec4 color;
+/* RENDERTARGETS: 0,7 */
+layout(location = 0) out vec4 Color;
+layout(location = 1) out vec3 color;
 
 void main()
 {
-  color = fsh_basic_color(TexCoord);
+  Color = fsh_basic_color(TexCoord);
 
-  color.rgb += texture(colortex7, TexCoord).rgb;
+  float depth = fsh_get_depth(TexCoord);
+  if(depth == 1.0)
+  {
+    return;
+  }
+
+  color = doGodrays(color, TexCoord);
 }

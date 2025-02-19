@@ -17,7 +17,7 @@ void main()
 {
   gl_Position = ftransform();
   
-  if (blockEntityId == 1001)
+  if (blockEntityId == -1)
   {
     gl_Position.y += vsh_getWaveHeight(gl_Position.xyz);
   }
