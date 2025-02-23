@@ -20,11 +20,11 @@ vec3 doGodrays(vec3 color, vec2 texcoord) {
     if(isEyeInWater == 1)
     {
       samples = texture(depthtex1, altCoord).r == 1.0 ? mix(vec3(0.1882, 0.902, 0.6745), godrayColor, waterTint) : vec3(0.0);
-      weight = 0.3;
+      gweight = 0.3;
       decay = 1.0;
       exposure = 0.71;
   	}
-    samples *= illuminationDecay * weight;
+    samples *= illuminationDecay * gweight;
     color += samples;
     illuminationDecay *= decay;
     altCoord -= deltaTexCoord;

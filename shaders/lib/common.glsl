@@ -7,6 +7,12 @@ const int colortex1Format = RGB16F;
 /*
 const int colortex2Format = RGB16F;
 */
+/*
+const int colortex5Format = RGB16F;
+*/
+/*
+const int colortex7Format = RGB16F;
+*/
 
 #define SHADOW_ENABLED 1 // [0 1]
 #define SHADOW_RESOLUTION 4096 // [512 1024 1536 2048 2560 3072 3584 4096 4608 8128]
@@ -42,7 +48,7 @@ const float DEPTH_THRESHOLD = 0.66;
 float exposure = 0.41;
 float decay = 0.91;
 float density = 1.25;
-float weight = 1.15;
+float gweight = 1.15;
 vec3 earlyGodrayColor = vec3(1.0, 0.4157, 0.0);
 vec3 godrayColor = vec3(0.9882, 0.6824, 0.4314);
 vec3 moonrayColor = vec3(0.1608, 0.2941, 0.9608);
