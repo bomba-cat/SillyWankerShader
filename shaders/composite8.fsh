@@ -14,7 +14,7 @@ layout(location = 1) out vec4 color;
 
 void main()
 {
-  color = fsh_basic_color(TexCoord);
+  Color = fsh_basic_color(TexCoord);
 
   float depth = fsh_get_depth(TexCoord);
   if (depth == 1.0)
