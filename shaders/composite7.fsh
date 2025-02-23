@@ -15,9 +15,5 @@ void main()
 {
   color = fsh_basic_color(TexCoord);
 
-  float depth = fsh_get_depth(TexCoord);
-  if (depth == 1.0)
-  {
-    return;
-  }
+  color.rgb += texture(colortex5, TexCoord).rgb;
 }
