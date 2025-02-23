@@ -5,7 +5,7 @@
 #include "/lib/color/basic_color.glsl"
 #include "/lib/gamma.glsl"
 #include "/lib/tonemapping.glsl"
-
+#include "/lib/motionblur.glsl"
 
 in vec2 TexCoord;
 
@@ -15,9 +15,11 @@ layout(location = 0) out vec4 color;
 void main()
 {
   color = fsh_basic_color(TexCoord);
-  #if TONEMAPPING == 0
-    color.rgb = fsh_apply_inversegamma(color);  
-  #elif TONEMAPPING == 1
-    color.rgb = uncharted2(pow(color.rgb, vec3 (1.0/2.2)));
+  #if TONEMAP_ENABLED == 1
+    #if TONEMAPPING == 0
+      color.rgb = fsh_apply_inversegamma(color);  
+    #elif TONEMAPPING == 1
+      color.rgb = uncharted2(pow(color.rgb, vec3 (1.0/2.2)));
+    #endif
   #endif
 }

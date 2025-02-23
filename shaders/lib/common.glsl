@@ -16,9 +16,19 @@ const int colortex2Format = RGB16F;
 //
 #define SUN_PATHROTATION 40 // [-50 -45 -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 15 20 25 30 35 40 45 50]
 //
+#define GODRAYS_ENABLED 1 // [0 1]
 #define GODRAYS_SAMPLES 24 // [0 24 36]
 //
+#define TONEMAP_ENABLED 1 // [0 1]
 #define TONEMAPPING 0 // [0 1]
+//
+#define MOTION_BLUR_ENABLED 1 // [0 1]
+#define MAX_BLUR_AMOUNT 1.50 // [0.5 1.0 1.5] 
+#define BLUR_SAMPLES 32 // [4 8 16 24 32 48 64]
+#define EDGE_THRESHOLD 1.0
+#define COLOR_INTENSITY 1.1
+//
+#define FULLBRIGHT 0 // [0 1]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;
@@ -28,6 +38,7 @@ const int noiseTextureResolution = SHADOW_NOISERESOLUTION;
 const int shadowMapResolution = SHADOW_RESOLUTION;
 const float waveHeight = 0.25;
 const float waveSpeed = 0.05;
+const float DEPTH_THRESHOLD = 0.66;
 float exposure = 0.41;
 float decay = 0.91;
 float density = 1.25;

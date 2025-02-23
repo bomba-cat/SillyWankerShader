@@ -1,6 +1,7 @@
 uniform sampler2D colortex0;
 uniform sampler2D colortex1;
 uniform sampler2D colortex2;
+uniform sampler2D colortex6;
 uniform sampler2D colortex7;
 uniform sampler2D colortexN;
 
@@ -24,10 +25,15 @@ uniform mat4 shadowModelView;
 uniform mat4 shadowProjection;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
+uniform vec3 cameraPosition, previousCameraPosition;
+uniform mat4 gbufferPreviousProjection;
+uniform mat4 gbufferPreviousModelView;
 
 uniform int blockEntityId;
 
 uniform int frameCounter;
+uniform int frameTime;
+uniform int frameTimeCounter;
 
 uniform sampler2D gtexture;
 

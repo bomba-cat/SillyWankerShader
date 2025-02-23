@@ -28,5 +28,6 @@ vec3 fsh_apply_lightColors(vec2 lightmap, vec3 normal, vec3 shadow)
   vec3 worldLightVector = mat3(gbufferModelViewInverse) * lightVector;
 
   vec3 sunlight = sunlightColor * clamp(dot(worldLightVector, normal), 0.0, 1.0) * lightmap.g * shadow;
+  
   return blocklight + skylight + ambient + sunlight;
 }

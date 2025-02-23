@@ -32,5 +32,8 @@ void main()
   #else
     vec3 shadow = vec3(1);
   #endif
-  color.rgb *= fsh_apply_lightColors(lightmap, normal, shadow);
+  
+  #if FULLBRIGHT == 0
+    color.rgb *= fsh_apply_lightColors(lightmap, normal, shadow);
+  #endif
 }

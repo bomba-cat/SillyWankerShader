@@ -25,5 +25,7 @@ void main()
     return;
   }
 
-  color = doGodrays(color, TexCoord);
+  #if GODRAYS_ENABLED == 1
+    color = doGodrays(color, TexCoord);
+  #endif
 }

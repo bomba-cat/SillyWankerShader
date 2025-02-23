@@ -6,6 +6,7 @@
 #include "/lib/lightmap.glsl"
 #include "/lib/normal.glsl"
 #include "/lib/depth.glsl"
+#include "/lib/motionblur.glsl"
 
 in vec2 TexCoord;
 
@@ -21,4 +22,8 @@ void main()
   {
     return;
   }
+
+  #if MOTION_BLUR_ENABLED == 1
+    color.rgb = computeMotionBlur(color.rgb, TexCoord);
+  #endif
 }

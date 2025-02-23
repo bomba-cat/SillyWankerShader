@@ -13,5 +13,7 @@ void main()
 {
   color = fsh_basic_color(TexCoord);
 
-  color.rgb += texture(colortex7, TexCoord).rgb;
+  #if GODRAYS_ENABLED == 1
+    color.rgb += texture(colortex7, TexCoord).rgb;
+  #endif
 }
