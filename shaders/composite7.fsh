@@ -15,5 +15,7 @@ void main()
 {
   color = fsh_basic_color(TexCoord);
 
-  color.rgb += texture(colortex5, TexCoord).rgb;
+  #if BLOOM_ENABLED == 1
+    color.rgb += texture(colortex5, TexCoord).rgb;
+  #endif
 }

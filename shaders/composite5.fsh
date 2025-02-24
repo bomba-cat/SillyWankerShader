@@ -16,5 +16,7 @@ void main()
 {
   Color = fsh_basic_color(TexCoord);
 
-  color = horizontalBlur(Color, TexCoord);
+  #if BLOOM_ENABLED == 1
+    color = horizontalBlur(Color, TexCoord);
+  #endif
 }

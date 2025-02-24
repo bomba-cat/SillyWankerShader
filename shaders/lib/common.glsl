@@ -35,6 +35,8 @@ const int colortex7Format = RGB16F;
 #define COLOR_INTENSITY 1.1
 //
 #define FULLBRIGHT 0 // [0 1]
+//
+#define BLOOM_ENABLED 0 // [0 1]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;

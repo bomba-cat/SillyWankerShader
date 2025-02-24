@@ -22,5 +22,7 @@ void main()
     return;
   }
 
-  color = HDRColorExtraction(Color);
+  #if BLOOM_ENABLED == 1
+    color = HDRColorExtraction(Color);
+  #endif
 }
