@@ -6,12 +6,10 @@ float noise(vec2 p)
 vec4 HDRColorExtraction(vec4 color)
 {
     float brightness = dot(color.rgb, vec3(0.251, 0.8745, 0.0784));
-    float threshold = 0.87;
-    if (brightness > threshold)
+    if (brightness > BLOOM_THRESHOLD)
     {
         color = vec4(color.rgb, 1.0);
-    }
-    else
+    } else
     {
         color = vec4(0.0, 0.0, 0.0, 1.0);
     }
@@ -20,7 +18,7 @@ vec4 HDRColorExtraction(vec4 color)
 
 vec4 horizontalBlur(vec4 color, vec2 texcoord)
 {
-    vec2 tex_offset = 5.0 / textureSize(colortex5, 0);
+    vec2 tex_offset = BLOOM_RADIUS / textureSize(colortex5, 0);
     vec3 result = vec3(0.0);
     float randomNoise = noise(gl_FragCoord.xy * 0.1);
     vec2 noiseOffset = vec2(randomNoise * 0.003 - 0.0015, 0.0);
@@ -36,7 +34,7 @@ vec4 horizontalBlur(vec4 color, vec2 texcoord)
 
 vec4 verticalBlur(vec4 color, vec2 texcoord)
 {
-    vec2 tex_offset = 5.0 / textureSize(colortex5, 0);
+    vec2 tex_offset = BLOOM_RADIUS / textureSize(colortex5, 0);
     vec3 result = vec3(0.0);
     float randomNoise = noise(gl_FragCoord.xy * 0.1);
     vec2 noiseOffset = vec2(0.0, randomNoise * 0.003 - 0.0015);
