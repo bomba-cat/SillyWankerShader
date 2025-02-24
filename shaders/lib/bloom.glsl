@@ -1,8 +1,7 @@
 vec4 HDRColorExtraction(vec4 color)
 {
   float brightness = dot(color.rgb, vec3(0.251, 0.8745, 0.0784));
-  if(brightness > 1.0)
-  if(true)
+  if(brightness > 0.88)
   {
     color = vec4(color.rgb, 1.0);
   } else

@@ -12,6 +12,7 @@ in vec2 LightmapCoord;
 in vec2 TexCoord;
 in vec3 Normal;
 in vec4 Color;
+flat in int blockId;
 
 /* RENDERTARGETS: 0,1,2 */
 layout(location = 0) out vec4 color;
@@ -22,7 +23,17 @@ void main()
 {
   color = fsh_basic_gtexture(TexCoord, Color);
   color.rgb = fsh_apply_gamma(color);
-  color *= vec4(vec3(0.6), 0.4);
+
+  if (blockId == 101)
+  {
+    color *= vec4(vec3(0.6), 0.3);
+  } else if (blockId ==  102)
+  {
+    color *= vec4(vec3(1.5), 0.6);
+  } else
+  {
+    color.a *= 0.8;
+  }
   
   lightmapData = fsh_lightmapData(LightmapCoord);
 

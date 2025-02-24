@@ -8,16 +8,19 @@
 #include "/lib/normal.glsl"
 #include "/lib/water.glsl"
 
+in vec2 mc_Entity;
 out vec2 LightmapCoord;
 out vec2 TexCoord;
 out vec3 Normal;
 out vec4 Color;
+flat out int blockId;
 
 void main()
 {
   gl_Position = ftransform();
   
-  if (blockEntityId == -1)
+  blockId = int(mc_Entity.x);
+  if (blockId == 101)
   {
     gl_Position.y += vsh_getWaveHeight(gl_Position.xyz);
   }

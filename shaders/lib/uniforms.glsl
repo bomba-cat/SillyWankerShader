@@ -19,6 +19,7 @@ uniform float viewWidth;
 uniform float viewHeight;
 
 uniform mat4 gbufferModelViewInverse;
+uniform mat4 gbufferModelView;
 uniform mat4 gbufferProjectionInverse;
 uniform mat4 gbufferProjection;
 uniform mat4 shadowModelView;
@@ -42,6 +43,8 @@ uniform sampler2D lightmap;
 uniform vec3 shadowLightPosition;
 
 uniform int isEyeInWater;
+
+uniform int worldTime;
 
 uniform float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
 uniform bool horizontal;
