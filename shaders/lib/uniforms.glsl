@@ -13,6 +13,8 @@ uniform sampler2D shadowtex1;
 
 uniform sampler2D shadowcolor0;
 
+uniform int renderStage;
+
 uniform sampler2D noisetex;
 
 uniform float viewWidth;

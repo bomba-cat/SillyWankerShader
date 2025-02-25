@@ -1,4 +1,5 @@
-vec3 doGodrays(vec3 color, vec2 texcoord) {
+vec3 doGodrays(vec3 color, vec2 texcoord)
+{
   color = vec3(0);
 
   vec2 altCoord = texcoord;
@@ -6,25 +7,47 @@ vec3 doGodrays(vec3 color, vec2 texcoord) {
   vec3 LightVector = viewSpaceToScreenSpace(shadowLightPosition);
   LightVector.xy = clamp(LightVector.xy, vec2(-0.5), vec2(1.5));
 
-  vec2 deltaTexCoord = (texcoord - (LightVector.xy)); 
-
+  vec2 deltaTexCoord = (texcoord - LightVector.xy);
   deltaTexCoord *= 1.0 / float(GODRAYS_SAMPLES) * density;
 
-  float illuminationDecay = 1.0;
+  float illuminationDecay = 2.0;
+  
+  float weight = 0.23 * SUN_ILLUMINANCE;
 
   altCoord -= deltaTexCoord * IGN(floor(gl_FragCoord.xy), frameCounter);
 
-  for(int i = 0; i < GODRAYS_SAMPLES; i++)
+  for (int i = 0; i < GODRAYS_SAMPLES; i++)
   {
-    vec3 samples = texture(depthtex0, altCoord).r == 1.0 ? vec3(1.0) * godrayColor : vec3(0.0);
-    if(isEyeInWater == 1)
+    vec3 samples = vec3(0.0);
+
+    if (texture(depthtex0, altCoord).r == 1.0)
     {
-      samples = texture(depthtex1, altCoord).r == 1.0 ? mix(vec3(0.1882, 0.902, 0.6745), godrayColor, waterTint) : vec3(0.0);
-      gweight = 0.3;
-      decay = 1.0;
-      exposure = 0.71;
-  	}
-    samples *= illuminationDecay * gweight;
+      if (worldTime < 1000) { 
+        float t = smoothstep(500, 1000, float(worldTime));
+        samples = mix(earlyGodrayColor, godrayColor, t);
+      } else if (worldTime < 12350)
+      {
+        float t = smoothstep(10000, 12350, float(worldTime));
+        samples = mix(godrayColor, duskGodrayColor, t);
+      } else if (worldTime < 23500) 
+      {
+        float t = smoothstep(12350, 13000, float(worldTime));
+        samples = mix(earlyGodrayColor, moonrayColor, t);
+        weight = 0.14 * MOON_ILLUMINANCE;
+      }
+    }
+
+    if (isEyeInWater == 1)
+    {
+      if (texture(depthtex1, altCoord).r == 1.0)
+      {
+        samples = mix(vec3(0.0941, 0.0392, 0.8275), godrayColor, waterTint);
+      }
+      weight = 0.3;
+      exposure = exposure * 1.2;
+    }
+
+    samples *= illuminationDecay * weight;
     color += samples;
     illuminationDecay *= decay;
     altCoord -= deltaTexCoord;
