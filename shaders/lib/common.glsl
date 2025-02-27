@@ -51,6 +51,9 @@ const int colortex7Format = RGB16F;
 #define SELECT_RED 0
 #define SELECT_GREEN 0 
 #define SELECT_BLUE 0
+//
+#define WATER_WAVE_HEIGHT 0.25 // [0.1 0.25 0.5 1.0]
+#define WATER_WAVE_SPEED 0.05 // [0.01 0.05 0.1 0.2]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;
@@ -59,9 +62,6 @@ const bool shadowcolor0Nearest = true;
 const float sunPathRotation = SUN_PATHROTATION;
 const int noiseTextureResolution = SHADOW_NOISERESOLUTION;
 const int shadowMapResolution = SHADOW_RESOLUTION;
-
-const float waveHeight = 0.25;
-const float waveSpeed = 0.05;
 
 vec3 lightmap_blocklightColor = vec3(0.85, 0.42, 0.12);
 vec3 lightmap_skylightColor = vec3(0.10, 0.15, 0.22);

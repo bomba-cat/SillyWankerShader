@@ -31,22 +31,22 @@ void main()
 
   if (blockId == 101)
   {
-    color *= vec4(vec3(1.5), 0.3);
+    color *= vec4(vec3(0.8), 0.5);
   } else if (blockId == 102)
   {
-    color *= vec4(vec3(1.5), 0.8);
+    color *= vec4(vec3(1.5), 0.6);
   } else
   {
-    color.a *= 0.8;
+    color *= vec4(vec3(0.2), 0.9);
   }
 
   lightmapData = fsh_lightmapData(LightmapCoord);
 
   normal = fsh_encodedNormal(Normal);
 
-  /*#if FULLBRIGHT == 0
+  #if FULLBRIGHT == 0
     vec2 lightmap = fsh_getLightmap(TexCoord);
     vec3 normal = fsh_get_normalized(TexCoord);
     color.rgb *= fsh_apply_lightColors(lightmap, normal, vec3(1));
-  #endif*/
+  #endif
 }

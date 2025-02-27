@@ -21,6 +21,7 @@ void main()
   float depth = fsh_get_depth(TexCoord);
   if (depth == 1.0)
   {
+    color.rgb += texture(colortex3, TexCoord).rgb;
     return;
   }
 
