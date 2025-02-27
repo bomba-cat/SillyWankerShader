@@ -8,10 +8,9 @@ vec3 doGodrays(vec3 color, vec2 texcoord)
   LightVector.xy = clamp(LightVector.xy, vec2(-0.5), vec2(1.5));
 
   vec2 deltaTexCoord = (texcoord - LightVector.xy);
-  deltaTexCoord *= 1.0 / float(GODRAYS_SAMPLES) * density;
+  deltaTexCoord *= 1.0 / float(GODRAYS_SAMPLES) * GODRAYS_DENSITY;
 
   float illuminationDecay = 2.0;
-  
   float weight = 0.23 * SUN_ILLUMINANCE;
 
   altCoord -= deltaTexCoord * IGN(floor(gl_FragCoord.xy), frameCounter);
@@ -25,11 +24,13 @@ vec3 doGodrays(vec3 color, vec2 texcoord)
       if (worldTime < 1000) { 
         float t = smoothstep(500, 1000, float(worldTime));
         samples = mix(earlyGodrayColor, godrayColor, t);
-      } else if (worldTime < 12350)
+      } 
+      else if (worldTime < 12350)
       {
         float t = smoothstep(10000, 12350, float(worldTime));
         samples = mix(godrayColor, duskGodrayColor, t);
-      } else if (worldTime < 23500) 
+      } 
+      else if (worldTime < 23500) 
       {
         float t = smoothstep(12350, 13000, float(worldTime));
         samples = mix(earlyGodrayColor, moonrayColor, t);
@@ -44,17 +45,17 @@ vec3 doGodrays(vec3 color, vec2 texcoord)
         samples = mix(vec3(0.0941, 0.0392, 0.8275), godrayColor, waterTint);
       }
       weight = 0.3;
-      exposure = exposure * 1.2;
+      samples *= 1.2; // This was your exposure tweak under water
     }
 
     samples *= illuminationDecay * weight;
     color += samples;
-    illuminationDecay *= decay;
+    illuminationDecay *= GODRAYS_DECAY;
     altCoord -= deltaTexCoord;
   }
 
   color /= GODRAYS_SAMPLES;
-  color *= exposure;
+  color *= GODRAYS_EXPOSURE;
 
   return color;
 }

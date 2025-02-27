@@ -24,15 +24,20 @@ const int colortex7Format = RGB16F;
 //
 #define GODRAYS_ENABLED 1 // [0 1]
 #define GODRAYS_SAMPLES 36 // [12 24 36]
+#define GODRAYS_EXPOSURE 0.41 // [0.25 0.35 0.41 0.5 0.75 1.0]
+#define GODRAYS_DECAY 0.91 // [0.80 0.85 0.88 0.91 0.95 1.0]
+#define GODRAYS_DENSITY 1.25 // [0.5 0.75 1.0 1.25 1.5 2.0]
+#define GODRAYS_WEIGHT 1.15 // [0.5 0.75 1.0 1.15 1.25 1.5]
 //
 #define TONEMAP_ENABLED 1 // [0 1]
 #define TONEMAPPING 1 // [0 1]
 //
 #define MOTION_BLUR_ENABLED 1 // [0 1]
-#define MAX_BLUR_AMOUNT 1.0 // [0.5 1.0 1.5] 
-#define BLUR_SAMPLES 64 // [4 8 16 24 32 48 64]
-#define EDGE_THRESHOLD 1.0 // [0.25 0.5 0.75 1.0]
-#define COLOR_INTENSITY 1.0 // [0.5 0.75 1.0 1.25 1.5]
+#define MB_MAX_BLUR_AMOUNT 1.0 // [0.5 1.0 1.5] 
+#define MB_BLUR_SAMPLES 64 // [4 8 16 24 32 48 64]
+#define MB_EDGE_THRESHOLD 1.0 // [0.25 0.5 0.75 1.0]
+#define MB_COLOR_INTENSITY 1.0 // [0.5 0.75 1.0 1.25 1.5]
+#define MB_DEPTH_THRESHOLD 0.66
 //
 #define FULLBRIGHT 0 // [0 1]
 //
@@ -58,25 +63,23 @@ const int shadowMapResolution = SHADOW_RESOLUTION;
 const float waveHeight = 0.25;
 const float waveSpeed = 0.05;
 
-const float DEPTH_THRESHOLD = 0.66;
+vec3 lightmap_blocklightColor = vec3(0.85, 0.42, 0.12);
+vec3 lightmap_skylightColor = vec3(0.10, 0.15, 0.22);
+vec3 lightmap_sunlightColor = vec3(0.85, 0.92, 1.0);
+vec3 lightmap_morningSunlightColor = vec3(0.80, 0.55, 0.35);
+vec3 lightmap_moonlightColor = vec3(0.45, 0.55, 1.0);  
+vec3 lightmap_nightSkyColor = vec3(0.06, 0.12, 0.45);
+vec3 lightmap_morningSkyColor = vec3(0.65, 0.55, 0.38);
+vec3 lightmap_ambientColor = vec3(0.08, 0.08, 0.08);
+vec3 lightmap_nightBlockColor = vec3(0.10, 0.09, 0.07);
+vec3 lightmap_nightAmbientColor = vec3(0.06, 0.06, 0.06);
+vec3 lightmap_duskSunlightColor = vec3(0.85, 0.40, 0.35);
+vec3 lightmap_duskSkyColor = vec3(0.75, 0.45, 0.38);
 
-vec3 blocklightColor = vec3(0.85, 0.42, 0.12);
-vec3 skylightColor = vec3(0.10, 0.15, 0.22);
-vec3 sunlightColor = vec3(0.85, 0.92, 1.0);
-vec3 morningSunlightColor = vec3(0.80, 0.55, 0.35);
-vec3 moonlightColor = vec3(0.45, 0.55, 1.0);  
-vec3 nightSkyColor = vec3(0.06, 0.12, 0.45);
-vec3 morningSkyColor = vec3(0.65, 0.55, 0.38);
-vec3 ambientColor = vec3(0.08, 0.08, 0.08);
-vec3 nightBlockColor = vec3(0.10, 0.09, 0.07);
-vec3 nightAmbientColor = vec3(0.06, 0.06, 0.06);
-vec3 duskSunlightColor = vec3(0.85, 0.40, 0.35);
-vec3 duskSkyColor = vec3(0.75, 0.45, 0.38);
-
-float exposure = 0.41;
-float decay = 0.91;
-float density = 1.25;
-float gweight = 1.15;
+vec3 sky_earlySkyColor = vec3(0.1, 0.05, 0.02);
+vec3 sky_daySkyColor = vec3(0.2, 0.35, 0.5);
+vec3 sky_duskSkyColor = vec3(0.1, 0.05, 0.02);
+vec3 sky_nightSkyColor = vec3(0.01, 0.01, 0.03);
 
 vec3 earlyGodrayColor = vec3(1.0, 0.2353, 0.0627);
 vec3 duskGodrayColor = vec3(1.0, 0.0667, 0.0);
