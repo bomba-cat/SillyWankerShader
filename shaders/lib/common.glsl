@@ -73,20 +73,6 @@ vec3 nightAmbientColor = vec3(0.06, 0.06, 0.06);
 vec3 duskSunlightColor = vec3(0.85, 0.40, 0.35);
 vec3 duskSkyColor = vec3(0.75, 0.45, 0.38);
 
-vec3 sunCol = vec3(1.0, 0.3, 0.05);
-vec3 fogColor = vec3(0.5882, 0.8941, 0.9059);
-vec3 skyColor = vec3(0.2196, 0.3569, 0.898);
-vec3 nightFogColor = vec3(0.0588, 0.149, 0.2078);
-vec3 skynightSkyColor = vec3(0.0319, 0.0639, 0.1557);
-vec3 earlyFogColor = vec3(1.0, 0.5765, 0.3137);
-vec3 earlySkyColor = vec3(0.4235, 0.8275, 0.898);
-vec3 lateFogColor = vec3(1.0, 0.302, 0.1804);
-vec3 lateSkyColor = vec3(0.298, 0.5137, 0.6392);
-vec3 MIE_Value = vec3(0.2549, 0.2549, 0.2549);
-vec4 starColor = vec4(0.1569, 0.6471, 0.9961, 1.0);
-vec3 rainFogColor = vec3(0.7373, 0.7373, 0.7373);
-vec3 rainSkyColor = vec3(0.4118, 0.4118, 0.4118);
-
 float exposure = 0.41;
 float decay = 0.91;
 float density = 1.25;

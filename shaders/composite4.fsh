@@ -17,10 +17,6 @@ void main()
   Color = fsh_basic_color(TexCoord);
 
   float depth = fsh_get_depth(TexCoord);
-  if (depth == 1.0)
-  {
-    return;
-  }
 
   #if BLOOM_ENABLED == 1
     color = HDRColorExtraction(Color);

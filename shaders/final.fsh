@@ -15,7 +15,7 @@ layout(location = 0) out vec4 color;
 void main()
 {
   color = fsh_basic_color(TexCoord);
-  
+
   #if TONEMAP_ENABLED == 1
     #if TONEMAPPING == 0
       color.rgb = fsh_apply_inversegamma(color);  

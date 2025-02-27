@@ -5,15 +5,11 @@ float noise(vec2 p)
 
 vec4 HDRColorExtraction(vec4 color)
 {
-  float brightness = dot(color.rgb, vec3(0.251, 0.8745, 0.0784));
-  if (brightness > BLOOM_THRESHOLD || (worldTime >= 12000 && worldTime <= 24000 && brightness > BLOOM_THRESHOLD/2))
-  {
-    color = vec4(color.rgb, 1.0);
-  } else
-  {
-    color = vec4(0.0, 0.0, 0.0, 1.0);
-  }
-  return color;
+    float brightness = dot(color.rgb, vec3(0.251, 0.8745, 0.0784));
+
+    float bloomFactor = smoothstep(0.0, 1.0, pow(brightness, 2.0));
+
+    return vec4(color.rgb * bloomFactor, bloomFactor);
 }
 
 vec4 horizontalBlur(vec4 color, vec2 texcoord)

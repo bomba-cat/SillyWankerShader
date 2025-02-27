@@ -6,15 +6,15 @@
 
 in vec4 Color;
 
-/* RENDERTARGET: 0 */
+/* RENDERTARGETS: 0,6 */
 layout(location = 0) out vec4 color;
+layout(location = 1) out vec4 skyColor;
 
 void main()
 {
   if (renderStage == MC_RENDER_STAGE_STARS)
   {
     color = setStarColor(Color);
-    color.a *= 10;
   } else {
     color.rgb = calcSkyColor();
   }

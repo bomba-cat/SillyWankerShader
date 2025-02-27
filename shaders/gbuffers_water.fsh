@@ -26,7 +26,7 @@ void main()
 
   if (blockId == 101)
   {
-    color *= vec4(vec3(0.6), 0.3);
+    color *= vec4(vec3(1.5), 0.3);
   } else if (blockId ==  102)
   {
     color *= vec4(vec3(1.5), 0.6);
