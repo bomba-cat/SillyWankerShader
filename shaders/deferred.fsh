@@ -8,6 +8,7 @@
 #include "/lib/normal.glsl"
 #include "/lib/distort.glsl"
 #include "/lib/shadowmap.glsl"
+#include "/lib/sky.glsl"
 
 in vec2 TexCoord;
 
@@ -21,7 +22,9 @@ void main()
   float depth = fsh_get_depth(TexCoord);
   if (depth == 1.0)
   {
-    color.rgb += texture(colortex3, TexCoord).rgb;
+    #if SKY_FIX == 1
+      color.rgb += fixSky(TexCoord);
+    #endif
     return;
   }
 

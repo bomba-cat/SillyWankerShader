@@ -21,3 +21,8 @@ vec4 setStarColor(vec4 glcolor)
 {
   return glcolor * 2;
 }
+
+vec3 fixSky(vec2 TexCoord)
+{
+  return texture(colortex3, TexCoord).rgb;
+}

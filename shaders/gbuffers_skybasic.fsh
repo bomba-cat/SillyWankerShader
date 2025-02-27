@@ -6,7 +6,7 @@
 
 in vec4 Color;
 
-/* RENDERTARGETS: 0,6 */
+/* RENDERTARGETS: 0,3 */
 layout(location = 0) out vec4 color;
 layout(location = 1) out vec4 skyColor;
 
