@@ -10,6 +10,7 @@
 #include "/lib/water.glsl"
 #include "/lib/distort.glsl"
 #include "/lib/shadowmap.glsl"
+#include "/lib/ssr.glsl"
 
 in vec2 LightmapCoord;
 in vec2 TexCoord;
@@ -43,10 +44,4 @@ void main()
   lightmapData = fsh_lightmapData(LightmapCoord);
 
   normal = fsh_encodedNormal(Normal);
-
-  #if FULLBRIGHT == 0
-    vec2 lightmap = fsh_getLightmap(TexCoord);
-    vec3 normal = fsh_get_normalized(TexCoord);
-    color.rgb *= fsh_apply_lightColors(lightmap, normal, vec3(1));
-  #endif
 }

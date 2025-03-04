@@ -56,6 +56,8 @@ const int colortex7Format = RGB16F;
 #define WATER_WAVE_SPEED 0.05 // [0.01 0.05 0.1 0.2]
 //
 #define SKY_FIX 0 // [0 1]
+//
+#defube SSR 0 // [0 1]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;

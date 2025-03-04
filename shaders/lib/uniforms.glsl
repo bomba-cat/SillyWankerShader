@@ -13,6 +13,9 @@ uniform sampler2D depthtex1;
 uniform sampler2D shadowtex0;
 uniform sampler2D shadowtex1;
 
+uniform sampler2D gaux1;
+uniform sampler2D gaux2;
+
 uniform sampler2D shadowcolor0;
 
 uniform int renderStage;
@@ -33,6 +36,7 @@ uniform mat4 projectionMatrix;
 uniform vec3 cameraPosition, previousCameraPosition;
 uniform mat4 gbufferPreviousProjection;
 uniform mat4 gbufferPreviousModelView;
+uniform mat4 gbufferPreviousModelViewInverse;
 
 uniform int blockEntityId;
 
