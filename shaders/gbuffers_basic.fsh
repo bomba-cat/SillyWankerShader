@@ -1,22 +1,23 @@
-#version 120
+#version 330 compatibility
 
-varying vec2 TexCoords;
-varying vec4 Color;
+#include "/lib/common.glsl"
+#include "/lib/uniforms.glsl"
+#include "/lib/color/basic_color.glsl"
+#include "/lib/gamma.glsl"
+#include "/lib/outline.glsl"
 
-#include "lib/random_color.glsl"
+in vec2 LightmapCoord;
+in vec2 TexCoord;
+in vec3 Normal;
+in vec4 Color;
 
-#define SELECTION_RED 2 // [0 1 2]
-#define SELECTION_GREEN 0 // [0 1 2]
-#define SELECTION_BLUE 1 // [0 1 2]
-#define CUSTOM 0 // [0 1]
-#define RGB_SPEED 0.05 // [0.01 0.05 0.1]
+/* RENDERTARGETS: 0,3 */
+layout(location = 0) out vec4 color;
+layout(location = 1) out vec4 skyColor;
 
-void main() {
-    #if CUSTOM == 1
-        vec3 Color = randomColor(RGB_SPEED);
-    #elif CUSTOM == 0
-        vec3 Color = vec3(SELECTION_RED, SELECTION_GREEN, SELECTION_BLUE);
-    #endif
-
-    gl_FragColor = vec4(Color, 1.0f);
+void main()
+{
+  color = setColor();
+  color.rgb = fsh_apply_gamma(color);
+  skyColor = color;
 }

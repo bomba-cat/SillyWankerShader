@@ -6,25 +6,22 @@
 #include "/lib/lightmap.glsl"
 #include "/lib/normal.glsl"
 #include "/lib/depth.glsl"
-#include "/lib/motionblur.glsl"
+#include "/lib/utilFunctions.glsl"
+#include "/lib/godrays.glsl"
 
 in vec2 TexCoord;
 
-/* RENDERTARGET: 0 */
-layout(location = 0) out vec4 color;
+/* RENDERTARGETS: 0,7 */
+layout(location = 0) out vec4 Color;
+layout(location = 1) out vec3 color;
 
 void main()
 {
-  color = fsh_basic_color(TexCoord);
+  Color = fsh_basic_color(TexCoord);
 
   float depth = fsh_get_depth(TexCoord);
-  
-  #if MOTION_BLUR_ENABLED == 1
-    color.rgb = computeMotionBlur(color.rgb, TexCoord);
-  #endif
 
-  if (depth == 1.0)
-  {
-    return;
-  }
+  #if GODRAYS_ENABLED == 1
+    color = doGodrays(color, TexCoord);
+  #endif
 }

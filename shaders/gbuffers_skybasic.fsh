@@ -1,8 +1,21 @@
-#version 120
+#version 330 compatibility
 
-varying vec2 TexCoords;
-varying vec4 Color;
+#include "/lib/common.glsl"
+#include "/lib/uniforms.glsl"
+#include "/lib/sky.glsl"
 
-void main() {
-    gl_FragColor = Color;
+in vec4 Color;
+
+/* RENDERTARGETS: 0,3 */
+layout(location = 0) out vec4 color;
+layout(location = 1) out vec4 skyColor;
+
+void main()
+{
+  if (renderStage == MC_RENDER_STAGE_STARS)
+  {
+    color = setStarColor(Color);
+  } else {
+    color.rgb = calcSkyColor();
+  }
 }

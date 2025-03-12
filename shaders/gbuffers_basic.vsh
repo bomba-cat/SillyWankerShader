@@ -1,9 +1,16 @@
-#version 120
+#version 330 compatibility
 
-varying vec2 TexCoords;
-varying vec4 Color;
+#include "/lib/uniforms.glsl"
+#include "/lib/coord/texcoord.glsl"
 
-void main() {
-    gl_Position = ftransform();
-    Color = gl_Color;
+out vec2 TexCoord;
+out vec4 Color;
+
+void main()
+{
+  gl_Position = ftransform();
+  
+  TexCoord = vsh_texcoord();
+
+  Color = gl_Color;
 }

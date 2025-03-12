@@ -1,10 +1,15 @@
-#version 120
+#version 330 compatibility
 
-varying vec2 TexCoords;
-varying vec4 Color;
+#include "/lib/common.glsl"
+#include "/lib/uniforms.glsl"
+#include "/lib/color/basic_color.glsl"
 
-uniform sampler2D texture;
+in vec2 TexCoord;
+in vec4 Color;
 
-void main() {
-    gl_FragData[0] = texture2D(texture, TexCoords) * Color;
+layout(location = 0) out vec4 color;
+
+void main()
+{
+  color = fsh_basic_gtexture(TexCoord, Color);
 }

@@ -1,8 +1,11 @@
-#version 120
+#version 330 compatibility
 
-varying vec2 TexCoords;
+#include "/lib/coord/texcoord.glsl"
 
-void main() {
-   gl_Position = ftransform();
-   TexCoords = gl_MultiTexCoord0.st;
+out vec2 TexCoord;
+
+void main()
+{
+  gl_Position = ftransform();
+  TexCoord = vsh_texcoord();
 }

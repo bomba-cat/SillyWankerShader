@@ -1,0 +1,6 @@
+#define U2_SHOULDER  3
+#define U2_TOE     1.75
+#define U2_LINEAR_STRENGTH 0.56
+#define U2_LINEAR_ANGLE 0.48
+#define U2_TOE_NUMERATOR    0.56
+#define U2_TOE_DENOMINATOR   0.8
