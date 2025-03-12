@@ -7,7 +7,6 @@
 #include "/lib/normal.glsl"
 #include "/lib/depth.glsl"
 #include "/lib/motionblur.glsl"
-#include "/lib/ssr.glsl"
 
 in vec2 TexCoord;
 
@@ -22,10 +21,6 @@ void main()
   
   #if MOTION_BLUR_ENABLED == 1
     color.rgb = computeMotionBlur(color.rgb, TexCoord);
-  #endif
-
-  #if SSR == 1
-    color.rgb = ApplySSR(TexCoord, color.rgb);
   #endif
 
   if (depth == 1.0)

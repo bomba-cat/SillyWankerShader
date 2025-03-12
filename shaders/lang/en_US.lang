@@ -1,0 +1,77 @@
+option.SHADOW_ENABLED=Enable Shadows
+option.SHADOW_RESOLUTION=Shadow Resolution
+option.SHADOW_QUALITY=Shadow Quality
+option.SHADOW_SOFTNESS=Shadow Softness
+option.SHADOW_NOISERESOLUTION=Shadow Noise Resolution
+
+option.SUN_PATHROTATION=Sun Path Rotation
+
+option.GODRAYS_ENABLED=Enable Godrays
+option.GODRAYS_SAMPLES=Godray Samples
+option.GODRAYS_EXPOSURE=Godray Exposure
+option.GODRAYS_DECAY=Godray Decay
+option.GODRAYS_DENSITY=Godray Density
+option.GODRAYS_WEIGHT=Godray Weight
+
+option.TONEMAP_ENABLED=Enable Tonemapping
+option.TONEMAPPING=Tonemapping Mode
+
+option.MOTION_BLUR_ENABLED=Enable Motion Blur
+option.MB_MAX_BLUR_AMOUNT=Max Blur Amount
+option.MB_BLUR_SAMPLES=Blur Samples
+option.MB_EDGE_THRESHOLD=Edge Threshold
+option.MB_COLOR_INTENSITY=Color Intensity
+option.MB_DEPTH_THRESHOLD=Depth Threshold
+
+option.FULLBRIGHT=Fullbright
+
+option.BLOOM_ENABLED=Enable Bloom
+option.BLOOM_RADIUS=Bloom Radius
+option.BLOOM_THRESHOLD=Bloom Threshold
+
+option.SUN_ILLUMINANCE=Sun Illuminance
+option.MOON_ILLUMINANCE=Moon Illuminance
+
+option.SELECT_RED=Selection Red
+option.SELECT_GREEN=Selection Green
+option.SELECT_BLUE=Selection Blue
+
+option.WATER_WAVE_HEIGHT=Water Wave Height
+option.WATER_WAVE_SPEED=Water Wave Speed
+
+option.SKY_FIX=Fix Sky Artifacts
+
+option.SSR=Enable Screen Space Reflections
+
+value.SHADOW_ENABLED.0=Off
+value.SHADOW_ENABLED.1=On
+
+value.GODRAYS_ENABLED.0=Off
+value.GODRAYS_ENABLED.1=On
+
+value.TONEMAP_ENABLED.0=Off
+value.TONEMAP_ENABLED.1=On
+
+value.MOTION_BLUR_ENABLED.0=Off
+value.MOTION_BLUR_ENABLED.1=On
+
+value.BLOOM_ENABLED.0=Off
+value.BLOOM_ENABLED.1=On
+
+value.FULLBRIGHT.0=Off
+value.FULLBRIGHT.1=On
+
+value.SKY_FIX.0=Off
+value.SKY_FIX.1=On
+
+value.SSR.0=Off
+value.SSR.1=On
+
+screen.SHADOWS=Shadow Options
+screen.LIGHTING=Lighting Options
+screen.GODRAYS=Godrays Settings
+screen.MOTION_BLUR=Motion Blur
+screen.WATER=Water Settings
+screen.SKY=Sky Options
+screen.POST_PROCESSING=Post Processing
+screen.SELECTION=Selection & Outline
