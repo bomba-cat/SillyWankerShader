@@ -34,6 +34,7 @@ uniform mat4 shadowProjection;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
 uniform vec3 cameraPosition, previousCameraPosition;
+uniform mat3 cameraMatrix;
 uniform mat4 gbufferPreviousProjection;
 uniform mat4 gbufferPreviousModelView;
 uniform mat4 gbufferPreviousModelViewInverse;
@@ -53,6 +54,7 @@ uniform vec3 shadowLightPosition;
 uniform int isEyeInWater;
 
 uniform int worldTime;
+uniform float time;
 
 uniform float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
 uniform bool horizontal;

@@ -5,7 +5,6 @@
 #include "/lib/color/basic_color.glsl"
 #include "/lib/gamma.glsl"
 #include "/lib/tonemapping.glsl"
-#include "/lib/aa.glsl"
 
 in vec2 TexCoord;
 
@@ -14,7 +13,7 @@ layout(location = 0) out vec4 color;
 
 void main()
 {
-  color = aa(TexCoord);
+  color = fsh_basic_color(TexCoord);
 
   #if TONEMAP_ENABLED == 1
     #if TONEMAPPING == 0

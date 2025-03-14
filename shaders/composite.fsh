@@ -7,6 +7,7 @@
 #include "/lib/normal.glsl"
 #include "/lib/depth.glsl"
 #include "/lib/motionblur.glsl"
+#include "/lib/aa.glsl"
 
 in vec2 TexCoord;
 
@@ -15,7 +16,8 @@ layout(location = 0) out vec4 color;
 
 void main()
 {
-  color = fsh_basic_color(TexCoord);
+  //color = fsh_basic_color(TexCoord);
+  color = aa(TexCoord);
 
   float depth = fsh_get_depth(TexCoord);
   
