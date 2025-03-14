@@ -58,6 +58,8 @@ const int colortex7Format = RGB16F;
 #define SKY_FIX 0 // [0 1]
 //
 #define SSR 0 // [0 1]
+//
+#define AA_SAMPLES // [4, 8, 16, 24]
 
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;
